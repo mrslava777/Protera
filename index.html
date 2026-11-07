@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PROTERA — доставка питьевой воды</title>
+<meta name="description" content="Доставка питьевой воды 18,9 л в Минской и Могилёвской областях.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --outer:#cddff2; --surface:#fbfdff; --white:#fff; --blue:#1279c8; --blue-d:#0d5fa6;
+  --blue-l:#e3f0fc; --navy:#0d2b4e; --muted:#6b87a8; --border:#e3eef9; --green:#3fae52;
+  --footer:#0e2f52; --shadow:0 6px 18px rgba(13,47,102,.06);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{font-family:'Manrope',system-ui,-apple-system,'Segoe UI',sans-serif;background:linear-gradient(180deg,#d3e3f5,#c6daf0);color:var(--navy);font-size:15px;line-height:1.5}
+body.cart-open,body.menu-open,body.orders-open,body.profile-open{overflow:hidden}
+img,svg{display:block}
+a{text-decoration:none;color:inherit}
+button{font-family:inherit}
+.ic{width:18px;height:18px}
+.s12{width:12px;height:12px}.s14{width:14px;height:14px}.s16{width:16px;height:16px}.s18{width:18px;height:18px}.s20{width:20px;height:20px}.s24{width:24px;height:24px}.s28{width:28px;height:28px}
+
+/* ---------- PAGE CARD ---------- */
+.page{max-width:1400px;margin:26px auto;border-radius:28px;overflow:clip;background:var(--surface);box-shadow:0 30px 80px rgba(13,47,102,.20)}
+
+/* ---------- HEADER ---------- */
+.header{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--border)}
+.header-in{display:flex;align-items:center;gap:24px;height:70px;padding:0 28px}
+.logo{display:flex;align-items:center;gap:10px}
+.logo .ic{color:var(--blue)}
+.logo-t b{display:block;font-size:18px;font-weight:800;letter-spacing:.02em;color:var(--navy);line-height:1.1}
+.logo-t span{display:block;font-size:10.5px;color:var(--muted)}
+.nav{display:flex;align-items:center;gap:6px;margin-left:auto}
+.nav a{font-size:13px;font-weight:600;color:#33507a;padding:8px 13px;border-radius:999px;transition:.2s;display:flex;align-items:center;gap:5px}
+.nav a:hover{color:var(--blue);background:var(--blue-l)}
+.nav a.active{background:var(--blue);color:#fff}
+.header-actions{display:flex;align-items:center;gap:16px;margin-left:auto}
+.nav + .header-actions{margin-left:16px}
+.phone{display:flex;align-items:center;gap:9px}
+.phone .ic{color:var(--blue)}
+.phone b{display:block;font-size:13.5px;color:var(--navy);line-height:1.2}
+.phone span{display:block;font-size:10.5px;color:var(--muted)}
+.cart-btn{position:relative;border:0;background:none;color:var(--blue);cursor:pointer;padding:6px}
+.cart-btn .badge,.tab .badge{position:absolute;top:-2px;right:-4px;min-width:17px;height:17px;padding:0 4px;border-radius:999px;background:var(--blue);color:#fff;font-size:10px;font-weight:800;display:grid;place-items:center}
+.badge.pop{animation:pop .35s}
+@keyframes pop{50%{transform:scale(1.35)}}
+.burger{display:none;border:0;background:none;color:var(--navy);cursor:pointer;padding:6px}
+
+/* ---------- CITY ---------- */
+.city{position:relative;display:inline-block;margin:0 0 16px}
+.city-btn{display:flex;align-items:center;gap:7px;background:#fff;border:0;border-radius:999px;padding:9px 16px;font-size:12.5px;font-weight:600;color:var(--navy);cursor:pointer;box-shadow:var(--shadow)}
+.city-btn .ic{color:var(--blue)}
+.city-btn b{font-weight:800}
+.city-menu{position:absolute;top:115%;left:0;min-width:170px;background:#fff;border-radius:14px;box-shadow:0 14px 34px rgba(9,30,60,.16);list-style:none;padding:6px;opacity:0;visibility:hidden;transform:translateY(6px);transition:.25s;z-index:20}
+.city.open .city-menu{opacity:1;visibility:visible;transform:none}
+.city-menu button{width:100%;text-align:left;border:0;background:none;padding:9px 12px;border-radius:9px;font-size:13px;font-weight:600;color:var(--navy);cursor:pointer}
+.city-menu button:hover{background:var(--blue-l);color:var(--blue-d)}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;background:linear-gradient(135deg,#eaf4fd 0%,#d8eafb 45%,#c9e0f6 100%);padding:44px 48px 108px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:20px;align-items:center;position:relative;z-index:2}
+.hero h1{font-size:clamp(30px,4.2vw,46px);line-height:1.12;margin:4px 0 14px;font-weight:800;color:var(--navy)}
+.lead{color:#3d5f88;font-size:15.5px;max-width:430px;margin-bottom:26px}
+.hero-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:14px 26px;font-size:14px;font-weight:700;cursor:pointer;transition:.2s}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 10px 22px rgba(18,121,200,.35)}
+.btn-primary:hover{background:var(--blue-d)}
+.btn-ghost{background:rgba(255,255,255,.7);color:var(--blue-d);border:1.5px solid rgba(18,121,200,.35)}
+.btn-ghost:hover{background:#fff}
+.btn-sm{padding:10px 16px;font-size:12.5px;width:100%}
+.btn-block{width:100%}
+.hero-chip{position:absolute;top:34px;right:5%;z-index:3;display:flex;align-items:center;gap:11px;background:#fff;border-radius:16px;padding:12px 18px;box-shadow:0 12px 30px rgba(13,47,102,.14)}
+.hero-chip .ic{color:var(--blue)}
+.hero-chip b{display:block;font-size:13.5px;line-height:1.2}
+.hero-chip span{display:block;font-size:12px;color:var(--muted)}
+.hero-art-wrap{position:relative}
+.hero-art{width:100%;height:auto}
+.float{animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+.dots{display:flex;gap:6px;margin-top:26px}
+.dots button{width:8px;height:8px;border-radius:999px;border:0;padding:0;background:#b9cfe6;cursor:pointer;transition:.25s}
+.dots button.active{width:24px;background:var(--blue)}
+.hero-copy{transition:opacity .24s,transform .24s}
+.hero-copy.fade{opacity:0;transform:translateY(8px)}
+
+/* ---------- FEATURES STRIP ---------- */
+.feats{position:relative;z-index:5;margin:-64px 28px 0;background:#fff;border-radius:18px;box-shadow:0 16px 40px rgba(13,47,102,.10);display:grid;grid-template-columns:repeat(4,1fr);padding:18px 10px}
+.feat{display:flex;align-items:center;gap:12px;justify-content:center;padding:6px 10px}
+.feat-ic{flex:0 0 46px;width:46px;height:46px;border-radius:13px;background:var(--blue-l);color:var(--blue);display:grid;place-items:center}
+.feat span{font-size:12.5px;font-weight:700;line-height:1.3;color:var(--navy)}
+
+/* ---------- SECTIONS ---------- */
+.section{padding:38px 28px}
+.sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:14px;margin-bottom:18px;flex-wrap:wrap}
+.sec-head h2{font-size:23px;font-weight:800;color:var(--navy)}
+.sec-sub{font-size:13px;color:var(--muted)}
+.sec-link{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--blue);cursor:pointer}
+.sec-link:hover{color:var(--blue-d)}
+
+/* ---------- CATALOG ---------- */
+.cats{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.cat-btn{padding:8px 16px;border-radius:999px;border:1px solid #d7e6f5;background:#fff;font-size:12.5px;font-weight:700;color:#33507a;cursor:pointer;transition:.2s}
+.cat-btn:hover{border-color:var(--blue);color:var(--blue)}
+.cat-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.goods{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.good{position:relative;background:#fff;border:1px solid var(--border);border-radius:16px;padding:14px;display:flex;flex-direction:column;transition:.2s}
+.good:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(13,47,102,.10)}
+.good.hidden,.promo.hidden{display:none}
+.hit{position:absolute;top:10px;right:10px;background:var(--green);color:#fff;font-size:10px;font-weight:800;padding:4px 10px;border-radius:999px;z-index:2}
+.thumb{height:126px;display:grid;place-items:center;margin-bottom:10px}
+.gimg{width:104px;height:118px}
+.good h3{font-size:13px;font-weight:800;line-height:1.35;color:var(--navy)}
+.sub{font-size:11.5px;color:var(--muted);margin:4px 0 6px}
+.price{font-size:12.5px;color:var(--muted);margin:0 0 12px}
+.price b{color:var(--navy)}
+.good .btn{margin-top:auto}
+.promo{position:relative;overflow:hidden;border-radius:16px;padding:22px;background:linear-gradient(135deg,#eef6fe 0%,#d5e8fa 100%);display:flex;flex-direction:column;gap:10px}
+.promo h3{font-size:19px;font-weight:800;line-height:1.25;color:var(--navy);max-width:220px}
+.promo p{font-size:12.5px;color:#3d5f88;max-width:220px}
+.promo .btn{margin-top:auto;align-self:flex-start;width:auto}
+.promo-art{position:absolute;right:6px;bottom:8px;width:110px;height:110px}
+
+/* ---------- WHY ---------- */
+.why{position:relative;overflow:hidden;background:linear-gradient(180deg,#f4faff 0%,#e8f3fd 100%);border-radius:20px;padding:28px 32px}
+.why h2{font-size:21px;font-weight:800;margin-bottom:20px}
+.why-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;position:relative;z-index:2}
+.why-item{display:flex;gap:14px;align-items:flex-start;padding:4px 18px}
+.why-item + .why-item{border-left:1px solid #d5e6f6}
+.why-item .ic{color:var(--blue);flex:0 0 34px;width:34px;height:34px;stroke-width:1.7}
+.why-item b{display:block;font-size:13px;line-height:1.35;color:var(--navy)}
+.why-item span{display:block;font-size:12px;color:var(--muted);margin-top:2px}
+.why-splash{position:absolute;right:-40px;bottom:-30px;width:420px;opacity:.55;pointer-events:none}
+
+/* ---------- BONUS / STEPS ---------- */
+.bonus-grid,.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.bonus,.step{background:#fff;border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
+.bonus .feat-ic,.step .feat-ic{margin-bottom:12px}
+.bonus h3,.step h3{font-size:14.5px;font-weight:800;margin-bottom:6px}
+.bonus p,.step p{font-size:12.5px;color:var(--muted);line-height:1.55}
+.step-num{width:38px;height:38px;border-radius:12px;background:var(--blue-l);color:var(--blue);font-size:12.5px;font-weight:800;display:grid;place-items:center;margin-bottom:12px}
+
+/* ---------- ABOUT ---------- */
+.about{display:grid;grid-template-columns:1fr 1fr;gap:34px;align-items:center}
+.about-text h2{font-size:22px;font-weight:800;margin-bottom:14px}
+.about-text p{font-size:14px;color:var(--muted);line-height:1.65;margin-bottom:12px}
+.about-list{list-style:none;margin-top:6px}
+.about-list li{display:flex;gap:9px;align-items:flex-start;font-size:13.5px;font-weight:600;margin-bottom:9px}
+.about-list .ic{color:var(--green);margin-top:2px;flex:0 0 16px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.stat{background:#fff;border:1px solid var(--border);border-radius:14px;padding:18px;box-shadow:var(--shadow)}
+.stat b{display:block;font-size:26px;font-weight:800;color:var(--blue);margin-bottom:4px}
+.stat span{font-size:12.5px;color:var(--muted)}
+
+/* ---------- FAQ ---------- */
+.faq-item{background:#fff;border:1px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden}
+.faq-q{width:100%;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 18px;background:none;border:0;cursor:pointer;font-size:14px;font-weight:700;color:var(--navy);text-align:left}
+.faq-q .ic{color:var(--blue);transition:transform .3s;flex:0 0 18px}
+.faq-item.open .faq-q .ic{transform:rotate(180deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-a p{padding:0 18px 16px;font-size:13.5px;color:var(--muted);line-height:1.6}
+
+/* ---------- CONTACTS ---------- */
+.contacts{display:grid;grid-template-columns:1fr 1.1fr;gap:20px;align-items:start}
+.c-info{background:var(--blue-l);border-radius:18px;padding:24px}
+.c-row{display:flex;gap:12px;align-items:flex-start;margin-bottom:16px}
+.c-row .feat-ic{flex:0 0 40px;width:40px;height:40px;background:#fff;margin:0}
+.c-row b{display:block;font-size:13.5px}
+.c-row span,.c-row a{font-size:13px;color:var(--muted)}
+.c-row a:hover{color:var(--blue)}
+.c-form{background:#fff;border:1px solid var(--border);border-radius:18px;padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.c-form .full{grid-column:1/-1}
+.c-form h3{grid-column:1/-1;font-size:16px;font-weight:800}
+.c-form input,.c-form textarea{width:100%;padding:12px 15px;border-radius:999px;border:1px solid #d7e6f5;background:#f8fbff;font-family:inherit;font-size:14px;color:var(--navy);outline:none;transition:.2s}
+.c-form textarea{border-radius:16px;min-height:88px;resize:vertical}
+.c-form input:focus,.c-form textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(18,121,200,.14);background:#fff}
+.note{grid-column:1/-1;font-size:11.5px;color:var(--muted)}
+
+/* ---------- FOOTER ---------- */
+.footer{background:var(--footer);color:#cfe0f2;padding:22px 28px;display:flex;align-items:center;gap:26px;flex-wrap:wrap}
+.footer .logo-t b{color:#fff}
+.footer .logo-t span{color:#9fbddd}
+.footer-nav{display:flex;gap:18px;flex-wrap:wrap;margin-left:auto}
+.footer-nav a{font-size:12.5px;color:#bcd6ee}
+.footer-nav a:hover{color:#fff}
+.socials{display:flex;gap:8px}
+.socials a{width:34px;height:34px;border-radius:999px;background:var(--blue);color:#fff;display:grid;place-items:center;transition:.2s}
+.socials a:hover{background:#2a94dd}
+.copy{font-size:11px;color:#7f9fc0;width:100%;text-align:right}
+
+/* ---------- DRAWERS (корзина / заказы / профиль) ---------- */
+.overlay{position:fixed;inset:0;background:rgba(9,25,44,.45);opacity:0;visibility:hidden;transition:.3s;z-index:90}
+body.cart-open .overlay,body.menu-open .overlay,body.orders-open .overlay,body.profile-open .overlay{opacity:1;visibility:visible}
+.drawer{position:fixed;top:0;right:0;height:100%;width:400px;max-width:94vw;background:#fff;z-index:100;transform:translateX(105%);transition:transform .35s ease;display:flex;flex-direction:column;box-shadow:-12px 0 40px rgba(9,30,60,.18)}
+body.cart-open #cart,body.orders-open #orders,body.profile-open #profile{transform:none}
+.dr-head{display:flex;align-items:center;justify-content:space-between;padding:18px;border-bottom:1px solid var(--border)}
+.dr-head h3{font-size:17px;font-weight:800}
+.icon-btn{width:38px;height:38px;border-radius:12px;border:0;background:var(--blue-l);color:var(--blue);display:grid;place-items:center;cursor:pointer}
+.dr-body{flex:1;overflow:auto;padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.dr-foot{border-top:1px solid var(--border);padding:16px 18px;display:flex;flex-direction:column;gap:12px}
+.cart-total{display:flex;justify-content:space-between;font-size:15px;font-weight:800}
+.ci{display:flex;gap:10px;background:#f6fafe;border:1px solid var(--border);border-radius:12px;padding:10px}
+.ci-thumb{flex:0 0 56px;width:56px;height:56px;background:#eaf3fc;border-radius:10px;display:grid;place-items:center}
+.ci-thumb svg{width:40px;height:40px}
+.ci-info{flex:1;min-width:0}
+.ci-name{font-size:13px;font-weight:700;line-height:1.3}
+.ci-price{font-size:12px;color:var(--muted);margin:3px 0 7px}
+.ci-qty{display:flex;align-items:center;gap:9px}
+.ci-qty button{width:24px;height:24px;border-radius:999px;border:1px solid #cfe0f2;background:#fff;color:var(--blue);display:grid;place-items:center;cursor:pointer}
+.ci-qty span{font-size:13px;font-weight:700;min-width:14px;text-align:center}
+.ci-right{display:flex;flex-direction:column;align-items:flex-end;justify-content:space-between}
+.ci-sum{font-size:12.5px;font-weight:800;color:var(--blue-d)}
+.ci-del{border:0;background:none;color:#a5b8cf;cursor:pointer;padding:4px}
+.ci-del:hover{color:#e05252}
+.empty{padding:48px 20px;text-align:center;color:var(--muted);font-size:13.5px}
+.empty .ic{width:46px;height:46px;color:#b9cfe6;margin:0 auto 12px}
+/* заказы */
+.order{background:#f6fafe;border:1px solid var(--border);border-radius:12px;padding:12px}
+.order-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:8px}
+.order-num{font-size:13px;font-weight:800}
+.order-date{font-size:11px;color:var(--muted);margin-top:2px}
+.status{font-size:10px;font-weight:800;padding:4px 10px;border-radius:999px;background:#e8f6ea;color:#2f8f43;white-space:nowrap}
+.status.new{background:var(--blue-l);color:var(--blue-d)}
+.order-items{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:8px}
+.order-total{font-size:13px;font-weight:800;color:var(--blue-d)}
+/* профиль */
+.bonus-card{border-radius:16px;padding:18px;background:linear-gradient(135deg,#2a94dd,#1273c4);color:#fff;margin-bottom:4px}
+.bonus-card b{font-size:26px;font-weight:800;display:block}
+.bonus-card span{font-size:12px;opacity:.9}
+.p-form{display:flex;flex-direction:column;gap:12px}
+.p-form label{font-size:11.5px;font-weight:700;color:var(--muted);display:block;margin-bottom:4px}
+.p-form input,.p-form select{width:100%;padding:11px 14px;border-radius:12px;border:1px solid #d7e6f5;background:#f8fbff;font-family:inherit;font-size:13.5px;color:var(--navy);outline:none}
+.p-form input:focus,.p-form select:focus{border-color:var(--blue);background:#fff}
+
+/* ---------- MOBILE MENU ---------- */
+.m-menu{position:fixed;inset:0;background:#f6fafe;z-index:100;display:flex;flex-direction:column;padding:86px 28px 30px;transform:translateY(-100%);transition:transform .35s ease;overflow:auto}
+body.menu-open .m-menu{transform:none}
+.m-menu a{font-size:17px;font-weight:700;color:var(--navy);padding:13px 0;border-bottom:1px solid #e2edf8}
+.m-close{position:absolute;top:18px;right:20px}
+
+/* ---------- TABBAR ---------- */
+.tabbar{display:none;position:fixed;bottom:12px;left:50%;transform:translateX(-50%);width:min(430px,94vw);background:#fff;border-radius:18px;box-shadow:0 16px 40px rgba(9,30,60,.22);z-index:80;padding:8px 6px}
+.tab{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;border:0;background:none;font-size:10px;font-weight:700;color:#7d94b4;cursor:pointer;padding:4px 0}
+.tab .ic{width:21px;height:21px}
+.tab.active{color:var(--blue)}
+.tab-ic{position:relative;display:grid;place-items:center}
+
+/* ---------- TOAST ---------- */
+#toast{position:fixed;left:50%;bottom:86px;transform:translate(-50%,20px);background:var(--navy);color:#fff;padding:12px 20px;border-radius:999px;font-size:13.5px;font-weight:600;opacity:0;visibility:hidden;transition:.3s;z-index:200;box-shadow:0 12px 30px rgba(9,30,60,.3);max-width:92vw;text-align:center}
+#toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
+
+/* ---------- ADAPTIVE ---------- */
+@media(max-width:1100px){ .goods{grid-template-columns:repeat(3,1fr)} }
+@media(max-width:1000px){
+  .why-row{grid-template-columns:1fr}
+  .why-item + .why-item{border-left:0;border-top:1px solid #d5e6f6;padding-top:14px}
+  .bonus-grid{grid-template-columns:1fr}
+}
+@media(max-width:900px){
+  .page{margin:0;border-radius:0}
+  .nav{display:none}
+  .burger{display:block}
+  .phone b,.phone span{display:none}
+  .hero{padding:26px 20px 96px}
+  .hero-grid{grid-template-columns:1fr}
+  .hero-art-wrap{max-width:380px;margin:0 auto;width:100%}
+  .hero-chip{top:16px;right:16px;padding:9px 14px}
+  .feats{margin:-56px 14px 0;grid-template-columns:repeat(4,1fr);padding:14px 4px}
+  .feat{flex-direction:column;gap:8px;text-align:center}
+  .feat-ic{flex:0 0 40px;width:40px;height:40px}
+  .feat span{font-size:10.5px}
+  .section{padding:30px 16px}
+  .goods{grid-template-columns:repeat(2,1fr)}
+  .about,.contacts{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .footer{flex-direction:column;align-items:flex-start;gap:16px}
+  .footer-nav{margin-left:0}
+  .copy{text-align:left}
+  .tabbar{display:flex}
+  body{padding-bottom:86px}
+  #toast{bottom:96px}
+}
+@media(max-width:640px){
+  .goods{grid-template-columns:1fr}
+  .good{display:grid;grid-template-columns:96px 1fr;column-gap:12px;align-items:center}
+  .thumb{grid-row:1/5;grid-column:1;height:96px;margin:0}
+  .gimg{width:88px;height:96px}
+  .good h3,.sub,.price,.good .btn{grid-column:2}
+  .price{margin-bottom:10px}
+  .c-form{grid-template-columns:1fr}
+  .feats{grid-template-columns:repeat(2,1fr);gap:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- SVG-спрайт -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+  <linearGradient id="gWater" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#7dbde9"/><stop offset="1" stop-color="#2e8bd0"/>
+  </linearGradient>
+  <linearGradient id="gWaterL" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#bfe0f6"/><stop offset="1" stop-color="#6fb7e4"/>
+  </linearGradient>
+  <linearGradient id="gBlue" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#55b5ec"/><stop offset="1" stop-color="#1273c4"/>
+  </linearGradient>
+
+  <symbol id="i-drop" viewBox="0 0 32 32">
+    <path d="M16 2C16 2 6 13.4 6 20a10 10 0 0 0 20 0C26 13.4 16 2 16 2z" fill="url(#gBlue)"/>
+    <path d="M11 20a5 5 0 0 0 3.4 4.7c-1.2-2.7-.8-5.6.9-8-2.5.7-4.3 1.7-4.3 3.3z" fill="#fff" opacity=".4"/>
+  </symbol>
+  <symbol id="i-drop-o" viewBox="0 0 24 24">
+    <path d="M12 2.5S5 10.5 5 15a7 7 0 0 0 14 0c0-4.5-7-12.5-7-12.5z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+  </symbol>
+
+  <symbol id="i-bottle" viewBox="0 0 120 170">
+    <rect x="46" y="0" width="28" height="14" rx="4" fill="#1b6fb8"/>
+    <rect x="46" y="4" width="28" height="3" fill="#0f5c9e" opacity=".5"/>
+    <path d="M50 14h20v10c0 8 26 12 26 36v88a20 20 0 0 1-20 20H44a20 20 0 0 1-20-20V60c0-24 26-28 26-36z" fill="url(#gWater)"/>
+    <g fill="#ffffff" opacity=".33">
+      <rect x="26" y="76" width="68" height="7" rx="3.5"/><rect x="26" y="96" width="68" height="7" rx="3.5"/>
+      <rect x="26" y="116" width="68" height="7" rx="3.5"/><rect x="26" y="136" width="68" height="7" rx="3.5"/>
+    </g>
+    <path d="M34 58c-5 12-5 74 0 88" stroke="#fff" stroke-width="7" stroke-linecap="round" fill="none" opacity=".4"/>
+    <ellipse cx="60" cy="42" rx="15" ry="7" fill="#fff" opacity=".35"/>
+  </symbol>
+
+  <symbol id="i-bottle-light" viewBox="0 0 120 170">
+    <rect x="46" y="0" width="28" height="14" rx="4" fill="#58b7e8"/>
+    <rect x="46" y="4" width="28" height="3" fill="#2f93c9" opacity=".5"/>
+    <path d="M50 14h20v10c0 8 26 12 26 36v88a20 20 0 0 1-20 20H44a20 20 0 0 1-20-20V60c0-24 26-28 26-36z" fill="url(#gWaterL)"/>
+    <g fill="#ffffff" opacity=".4">
+      <rect x="26" y="76" width="68" height="7" rx="3.5"/><rect x="26" y="96" width="68" height="7" rx="3.5"/>
+      <rect x="26" y="116" width="68" height="7" rx="3.5"/><rect x="26" y="136" width="68" height="7" rx="3.5"/>
+    </g>
+    <path d="M34 58c-5 12-5 74 0 88" stroke="#fff" stroke-width="7" stroke-linecap="round" fill="none" opacity=".5"/>
+    <ellipse cx="60" cy="42" rx="15" ry="7" fill="#fff" opacity=".45"/>
+  </symbol>
+
+  <symbol id="i-pump" viewBox="0 0 120 120">
+    <ellipse cx="60" cy="104" rx="26" ry="6" fill="#cfe0f2"/>
+    <rect x="44" y="50" width="32" height="52" rx="10" fill="#eef3f8"/>
+    <rect x="40" y="32" width="40" height="22" rx="9" fill="#f8fbfe"/>
+    <path d="M78 38h12q8 0 8 8v4H86v12h-8z" fill="#dfe7ee"/>
+    <circle cx="58" cy="43" r="4.5" fill="#1279c8"/>
+    <rect x="52" y="62" width="16" height="4" rx="2" fill="#dfe7ee"/>
+    <rect x="52" y="72" width="16" height="4" rx="2" fill="#dfe7ee"/>
+  </symbol>
+
+  <symbol id="i-pump-m" viewBox="0 0 120 120">
+    <ellipse cx="60" cy="104" rx="26" ry="6" fill="#cfe0f2"/>
+    <rect x="46" y="44" width="28" height="58" rx="9" fill="#eef3f8"/>
+    <rect x="42" y="30" width="36" height="16" rx="8" fill="#1279c8"/>
+    <rect x="52" y="20" width="16" height="12" rx="5" fill="#0d5fa6"/>
+    <path d="M74 36h14q8 0 8 8v4H84v14H74z" fill="#dfe7ee"/>
+    <rect x="52" y="62" width="16" height="4" rx="2" fill="#dfe7ee"/>
+  </symbol>
+
+  <symbol id="i-cooler-t" viewBox="0 0 120 130">
+    <ellipse cx="60" cy="122" rx="34" ry="6" fill="#cfe0f2"/>
+    <rect x="46" y="6" width="28" height="30" rx="8" fill="url(#gWater)"/>
+    <rect x="52" y="34" width="16" height="12" rx="4" fill="#dceafc"/>
+    <rect x="30" y="46" width="60" height="74" rx="10" fill="#f2f6fa"/>
+    <rect x="40" y="58" width="40" height="26" rx="6" fill="#e2ebf3"/>
+    <rect x="47" y="66" width="8" height="12" rx="2.5" fill="#e05252"/>
+    <rect x="65" y="66" width="8" height="12" rx="2.5" fill="#1279c8"/>
+    <rect x="44" y="102" width="32" height="8" rx="3" fill="#dfe8f0"/>
+  </symbol>
+
+  <symbol id="i-dispenser" viewBox="0 0 120 130">
+    <ellipse cx="60" cy="122" rx="30" ry="6" fill="#cfe0f2"/>
+    <rect x="48" y="12" width="24" height="28" rx="7" fill="#dceafc"/>
+    <rect x="52" y="38" width="16" height="10" rx="4" fill="#e4eef8"/>
+    <rect x="36" y="48" width="48" height="72" rx="10" fill="#f8fbfe"/>
+    <rect x="56" y="62" width="8" height="14" rx="2.5" fill="#1279c8"/>
+    <rect x="46" y="102" width="28" height="7" rx="3" fill="#e4eef8"/>
+  </symbol>
+
+  <symbol id="i-tap" viewBox="0 0 120 120">
+    <circle cx="60" cy="74" r="18" fill="url(#gBlue)"/>
+    <circle cx="60" cy="74" r="18" fill="none" stroke="#0f5c9e" stroke-width="3" stroke-dasharray="4 8" opacity=".35"/>
+    <rect x="54" y="38" width="12" height="20" rx="5" fill="#0d5fa6"/>
+    <path d="M70 62h14q6 0 6 6v4H80v14H70z" fill="#dfe7ee"/>
+  </symbol>
+
+  <symbol id="i-stand" viewBox="0 0 120 120">
+    <rect x="26" y="98" width="68" height="8" rx="4" fill="#9fb6cc"/>
+    <rect x="82" y="34" width="8" height="68" rx="4" fill="#9fb6cc"/>
+    <path d="M86 44L46 94" stroke="#9fb6cc" stroke-width="8" stroke-linecap="round"/>
+    <rect x="34" y="26" width="26" height="42" rx="9" fill="url(#gWater)" transform="rotate(22 47 47)"/>
+  </symbol>
+
+  <symbol id="i-cup" viewBox="0 0 120 120">
+    <path d="M45 34h30l-4 66H49z" fill="#f8fbfe" stroke="#c9dcf0" stroke-width="2"/>
+    <path d="M47.6 56h24.8l-1.2 16H48.8z" fill="#1279c8" opacity=".85"/>
+    <ellipse cx="60" cy="34" rx="15" ry="4.5" fill="#dceafc"/>
+  </symbol>
+
+  <symbol id="i-holder" viewBox="0 0 120 120">
+    <rect x="34" y="28" width="8" height="46" rx="4" fill="#9fb6cc"/>
+    <rect x="40" y="46" width="12" height="8" rx="3" fill="#9fb6cc"/>
+    <path d="M60 42h20l-3 34H63z" fill="#f8fbfe" stroke="#c9dcf0" stroke-width="2"/>
+    <circle cx="70" cy="52" r="17" fill="none" stroke="#9fb6cc" stroke-width="6"/>
+  </symbol>
+
+  <symbol id="i-cart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/>
+    <path d="M1 1h4l2.6 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/></g></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M5 12h14M12 5l7 7-7 7"/></g></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1 3h15v13H1zM16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2"/><circle cx="18.5" cy="18.5" r="2"/></g></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></g></symbol>
+  <symbol id="i-repeat" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17 1l4 4-4 4M21 5H9a6 6 0 0 0-6 6v1M7 23l-4-4 4-4M3 19h12a6 6 0 0 0 6-6v-1"/></g></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5" rx="1"/>
+    <line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></g></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></g></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2z"/></g></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></g></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></g></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></g></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></g></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></g></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></g></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></g></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 6l-10 7L2 6"/></g></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8"/></g></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M3 9.5L12 3l9 6.5V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></g></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+    <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/>
+    <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></g></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></g></symbol>
+  <symbol id="i-vk" viewBox="0 0 24 24">
+    <path d="M13.1 17.8c-5.4 0-8.5-3.7-8.6-9.8h2.7c.1 4.5 2.1 6.4 3.7 6.8V8h2.5v3.9c1.6-.2 3.3-2 3.9-3.9h2.5c-.4 2.3-2 4.1-3.1 4.8 1.1.6 2.9 2 3.6 4.9h-2.8c-.5-1.7-1.9-3-3.6-3.2v3.3z" fill="currentColor"/></symbol>
+</defs>
+</svg>
+
+<div class="page">
+<!-- ШАПКА -->
+<header class="header">
+  <div class="header-in">
+    <a class="logo" href="#top">
+      <svg class="ic s28"><use href="#i-drop"/></svg>
+      <span class="logo-t"><b>PROTERA</b><span>Доставка воды</span></span>
+    </a>
+    <nav class="nav">
+      <a href="#top" class="active">Главная</a>
+      <a href="#catalog">Каталог <svg class="ic s12"><use href="#i-chev"/></svg></a>
+      <a href="#about">О компании</a>
+      <a href="#delivery">Доставка</a>
+      <a href="#bonus">Бонусы</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="header-actions">
+      <a class="phone" href="tel:+79110117020">
+        <svg class="ic s20"><use href="#i-phone"/></svg>
+        <span class="logo-t"><b>+7 (911) 011-70-20</b><span>с 8:00 до 20:00</span></span>
+      </a>
+      <button class="cart-btn" id="cartOpen" aria-label="Корзина">
+        <svg class="ic s24"><use href="#i-cart"/></svg><span class="badge js-badge">0</span>
+      </button>
+      <button class="burger" id="burger" aria-label="Меню"><svg class="ic s24"><use href="#i-menu"/></svg></button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section id="top">
+  <div class="hero">
+    <div class="hero-chip">
+      <svg class="ic s24"><use href="#i-clock"/></svg>
+      <div><b>Доставка</b><span>от 1 часа</span></div>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-copy" id="heroCopy">
+        <div class="city" id="city">
+          <button class="city-btn" id="cityBtn">
+            <svg class="ic s14"><use href="#i-pin"/></svg>Ваш город: <b id="cityName">Минск</b>
+            <svg class="ic s12"><use href="#i-chev"/></svg>
+          </button>
+          <ul class="city-menu" id="cityMenu">
+            <li><button>Минск</button></li><li><button>Марьина Горка</button></li><li><button>Дружный</button></li>
+            <li><button>Свислочь</button></li><li><button>Руденск</button></li><li><button>Червень</button></li>
+            <li><button>Осиповичи</button></li>
+          </ul>
+        </div>
+        <h1 id="heroTitle">Вода, которую удобно заказывать</h1>
+        <p class="lead" id="heroLead">Свежая питьевая вода для дома и офиса. Доставим в удобное время.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#catalog">Выбрать воду <svg class="ic s16"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="dots" id="dots">
+          <button class="active" aria-label="Слайд 1"></button>
+          <button aria-label="Слайд 2"></button>
+          <button aria-label="Слайд 3"></button>
+        </div>
+      </div>
+
+      <div class="hero-art-wrap">
+        <svg class="hero-art" viewBox="0 0 560 440" aria-hidden="true">
+          <circle cx="280" cy="225" r="175" fill="#ffffff" opacity=".38"/>
+          <path d="M70 320C95 190 205 118 305 128c-88 22-166 92-188 196z" fill="#fff" opacity=".55"/>
+          <path d="M490 320C465 190 355 118 255 128c88 22 166 92 188 196z" fill="#fff" opacity=".45"/>
+          <path d="M120 340c40-90 100-132 180-138" stroke="#fff" stroke-width="10" fill="none" opacity=".5" stroke-linecap="round"/>
+          <path d="M440 340c-40-90-100-132-180-138" stroke="#fff" stroke-width="10" fill="none" opacity=".4" stroke-linecap="round"/>
+          <g fill="#ffffff" opacity=".85">
+            <circle cx="128" cy="128" r="10"/><circle cx="432" cy="112" r="8"/><circle cx="472" cy="212" r="12"/>
+            <circle cx="86" cy="238" r="7"/><circle cx="352" cy="66" r="6"/><circle cx="206" cy="58" r="5"/>
+            <circle cx="500" cy="300" r="6"/><circle cx="60" cy="300" r="5"/>
+          </g>
+          <g fill="#8ec9ef">
+            <circle cx="160" cy="86" r="6"/><circle cx="406" cy="70" r="5"/><circle cx="500" cy="160" r="6"/><circle cx="70" cy="180" r="5"/>
+          </g>
+          <g fill="#6cbf4a">
+            <path d="M150 210c2-20 20-32 40-30-2 20-20 32-40 30z"/>
+            <path d="M418 250c-2-18 14-30 32-28-2 18-16 30-32 28z" opacity=".9"/>
+          </g>
+          <ellipse cx="280" cy="402" rx="190" ry="24" fill="#b9d7f0"/>
+          <ellipse cx="280" cy="398" rx="120" ry="16" fill="#a4ccea" opacity=".8"/>
+          <g class="float"><use href="#i-bottle" x="188" y="140" width="184" height="262"/></g>
+          <path d="M210 396c20 10 120 10 140 0" stroke="#8fc3ea" stroke-width="6" fill="none" opacity=".6" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <!-- Преимущества -->
+  <div class="feats">
+    <div class="feat"><span class="feat-ic"><svg class="ic s24"><use href="#i-truck"/></svg></span><span>Быстрая<br>доставка</span></div>
+    <div class="feat"><span class="feat-ic"><svg class="ic s24"><use href="#i-shield"/></svg></span><span>Гарантия<br>качества</span></div>
+    <div class="feat"><span class="feat-ic"><svg class="ic s24"><use href="#i-repeat"/></svg></span><span>Повторный<br>заказ в 1 клик</span></div>
+    <div class="feat"><span class="feat-ic"><svg class="ic s24"><use href="#i-gift"/></svg></span><span>Бонусы<br>и подарки</span></div>
+  </div>
+</section>
+
+<!-- КАТАЛОГ -->
+<section class="section" id="catalog">
+  <div class="sec-head">
+    <h2>Популярные товары</h2>
+    <a class="sec-link" href="#catalog" id="allCatalog">Весь каталог <svg class="ic s14"><use href="#i-arrow"/></svg></a>
+  </div>
+
+  <div class="cats">
+    <button class="cat-btn active" data-filter="all">Все товары</button>
+    <button class="cat-btn" data-filter="water">Вода</button>
+    <button class="cat-btn" data-filter="pumps">Помпы</button>
+    <button class="cat-btn" data-filter="coolers">Кулеры и раздатчики</button>
+    <button class="cat-btn" data-filter="access">Аксессуары</button>
+    <button class="cat-btn" data-filter="dishes">Посуда</button>
+  </div>
+
+  <div class="goods">
+    <article class="good" data-cat="water">
+      <span class="hit">Хит</span>
+      <div class="thumb"><svg class="gimg"><use href="#i-bottle"/></svg></div>
+      <h3>Питьевая вода 19 л</h3>
+      <div class="sub">Возвратная тара</div>
+      <div class="price"><b>11,00 руб.</b> · от 2 шт</div>
+      <button class="btn btn-primary btn-sm js-add" data-id="protera19" data-name="Живая вода ПРОТЕРА 18,9 л" data-price="11" data-img="i-bottle">
+        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
+    </article>
+
+    <article class="good" data-cat="pumps">
+      <div class="thumb"><svg class="gimg"><use href="#i-pump"/></svg></div>
+      <h3>Электрическая помпа</h3>
+      <div class="sub">Аксессуары</div>
+      <div class="price"><b>29,00 руб.</b> · помпа К7</div>
+      <button class="btn btn-primary btn-sm js-add" data-id="pumpK7" data-name="Помпа электрическая К7" data-price="29" data-img="i-pump">
+        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
+    </article>
+
+    <article class="good" data-cat="coolers">
+      <div class="thumb"><svg class="gimg"><use href="#i-cooler-t"/></svg></div>
+      <h3>Кулер для воды</h3>
+      <div class="sub">Для дома и офиса</div>
+      <div class="price"><b>230,00 руб.</b> · Ecotronic V21-TE</div>
+      <button class="btn btn-primary btn-sm js-add" data-id="coolerV21" data-name="Кулер Ecotronic V21-TE" data-price="230" data-img="i-cooler-t">
+        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
+    </article>
+
+    <article class="good" data-cat="access">
+      <div class="thumb"><svg class="gimg"><use href="#i-tap"/></svg></div>
+      <h3>Кран-клапан для бутыли</h3>
+      <div class="sub">Аксессуары</div>
+      <div class="price"><b>10,00 руб.</b></div>
+      <button class="btn btn-primary btn-sm js-add" data-id="tap" data-name="Кран-клапан" data-price="10" data-img="i-tap">
+        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
+    </article>
+
+    <article class="good" data-cat="water">
+      <div class="thumb"><svg class="gimg"><use href="#i-bottle-light"/></svg></div>
+      <h3>Протера Лайт 18,9 л</h3>
+      <div class="sub">Возвратная тара · без накипи</div>
+      <div class="price"><b>11,00 руб.</b> · от 2 шт</div>
+      <button class="btn btn-primary btn-sm js-add" data-id="light19" data-name="Протера Лайт 18,9 л" data-price="11" data-img="i-bottle-light">
+        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
+    </article>
+
+    <article class="good" data-cat="pumps">
+      <div class="thumb"><svg class="gimg"><use href="#i-pump-m"/></svg></div>
+      <h3>Помпа механическая</h3>
+      <div class="sub">Аксессуары · HotFrost А25</div>
+      <div class="price"><b>18,00 руб.</b></div>
+      <button class="btn btn-primary btn-sm js-add" data-id="pumpA25" data-name="Помпа HotFrost А25" data-price="18" data-img="i-pump-m">
+        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
+    </article>
+
+    <article class="good" data-cat="pumps">
+      <div class="thumb"><svg class="gimg"><use href="#i-pump"/></svg></div>
+      <h3>Помпа HotFrost А22</h3>
+      <div class="sub">Аксессуары · электрическая</div>
+      <div class="price"><b>55,00 руб.</b></div>
+      <button class="btn btn-primary btn-sm js-add" data-id="pumpA22" data-name="Помпа HotFrost А22" data-price="55" data-img="i-pump">
+        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
+    </article>
+
+    <article class="good" data-cat="coolers">
+      <div class="thumb"><svg class="gimg"><use href="#i-dispenser"/></svg></div>
+      <h3>Раздатчик воды L1-WD</h3>
+      <div class="sub">Для дома и офиса</div>
+      <div class="price"><b>40,00 руб.</b></div>
+      <button class="btn btn-primary btn-sm js-add" data-id="dispL1" data-name="Раздатчик воды L1-WD" data-price="40" data-img="i-dispenser">
+        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
+    </article>
+
+    <article class="good" data-cat="access">
+      <div class="thumb"><svg class="gimg"><use href="#i-stand"/></svg></div>
+      <h3>Подставка под бутыль</h3>
+      <div class="sub">Аксессуары · металл</div>
+      <div class="price"><b>13,20 руб.</b></div>
+      <button class="btn btn-primary btn-sm js-add" data-id="stand" data-name="Подставка под бутыль" data-price="13.2" data-img="i-stand">
+        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
+    </article>
+
+    <article class="good" data-cat="access">
+      <div class="thumb"><svg class="gimg"><use href="#i-holder"/></svg></div>
+      <h3>Держатель для стаканов</h3>
+      <div class="sub">Аксессуары</div>
+      <div class="price"><b>23,00 руб.</b></div>
+      <button class="btn btn-primary btn-sm js-add" data-id="holder" data-name="Держатель для стаканов" data-price="23" data-img="i-holder">
+        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
+    </article>
+
+    <article class="good" data-cat="dishes">
+      <div class="thumb"><svg class="gimg"><use href="#i-cup"/></svg></div>
+      <h3>Стаканы 0,18 л (200 шт)</h3>
+      <div class="sub">Одноразовая посуда</div>
+      <div class="price"><b>19,00 руб.</b></div>
+      <button class="btn btn-primary btn-sm js-add" data-id="cup200" data-name="Стакан 0,18 л (200 шт)" data-price="19" data-img="i-cup">
+        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
+    </article>
+
+    <article class="good" data-cat="dishes">
+      <div class="thumb"><svg class="gimg"><use href="#i-cup"/></svg></div>
+      <h3>Стаканы «Протера» (50 шт)</h3>
+      <div class="sub">Одноразовая посуда</div>
+      <div class="price"><b>5,50 руб.</b></div>
+      <button class="btn btn-primary btn-sm js-add" data-id="cup50" data-name="Стакан «Протера» (50 шт)" data-price="5.5" data-img="i-cup">
+        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
+    </article>
+
+    <aside class="promo">
+      <h3>Пора пополнить запас воды?</h3>
+      <p>Закажите доставку в несколько кликов.</p>
+      <button class="btn btn-primary" id="promoOrder">Оформить заказ <svg class="ic s16"><use href="#i-arrow"/></svg></button>
+      <svg class="promo-art" viewBox="0 0 110 110" aria-hidden="true">
+        <path d="M78 34c2-22 22-34 44-32-2 22-22 34-44 32z" fill="#6cbf4a" transform="translate(-14 26) scale(.9)"/>
+        <use href="#i-drop" x="18" y="26" width="64" height="64"/>
+        <use href="#i-drop" x="62" y="58" width="34" height="34"/>
+      </svg>
+    </aside>
+  </div>
+</section>
+
+<!-- ПОЧЕМУ МЫ -->
+<section class="section" style="padding-top:0">
+  <div class="why">
+    <h2>Почему PROTERA?</h2>
+    <div class="why-row">
+      <div class="why-item"><svg class="ic"><use href="#i-drop-o"/></svg>
+        <div><b>Чистая вода</b><span>высокого качества</span></div></div>
+      <div class="why-item"><svg class="ic"><use href="#i-truck"/></svg>
+        <div><b>Удобная доставка</b><span>в согласованное время</span></div></div>
+      <div class="why-item"><svg class="ic"><use href="#i-heart"/></svg>
+        <div><b>Забота о клиентах</b><span>и внимание к деталям</span></div></div>
+    </div>
+    <svg class="why-splash" viewBox="0 0 420 160" aria-hidden="true">
+      <path d="M0 90C70 40 140 110 210 70S350 30 420 60v100H0z" fill="#cfe4f8"/>
+      <path d="M0 110c80-40 150 30 220-10s130-30 200-10v70H0z" fill="#bcd9f2" opacity=".8"/>
+      <g fill="#fff" opacity=".8"><circle cx="60" cy="50" r="6"/><circle cx="150" cy="30" r="4"/><circle cx="260" cy="40" r="5"/><circle cx="350" cy="24" r="4"/></g>
+    </svg>
+  </div>
+</section>
+
+<!-- БОНУСЫ -->
+<section class="section" id="bonus" style="padding-top:0">
+  <div class="sec-head"><h2>Бонусы и подарки</h2><span class="sec-sub">Постоянным клиентам — больше выгоды</span></div>
+  <div class="bonus-grid">
+    <div class="bonus"><span class="feat-ic"><svg class="ic s24"><use href="#i-gift"/></svg></span>
+      <h3>5% бонусами с каждого заказа</h3>
+      <p>Бонусы начисляются на ваш счёт автоматически и отображаются в профиле. Ими можно оплачивать до 100% следующего заказа.</p></div>
+    <div class="bonus"><span class="feat-ic"><svg class="ic s24"><use href="#i-heart"/></svg></span>
+      <h3>Приведи друга</h3>
+      <p>Друг получает скидку на первый заказ, а вы — бонусные бутыли на свой счёт.</p></div>
+    <div class="bonus"><span class="feat-ic"><svg class="ic s24"><use href="#i-repeat"/></svg></span>
+      <h3>Повторный заказ в 1 клик</h3>
+      <p>История заказов сохраняется в разделе «Заказы»: повторяйте прошлый состав корзины одним нажатием.</p></div>
+  </div>
+</section>
+
+<!-- ДОСТАВКА -->
+<section class="section" id="delivery" style="padding-top:0">
+  <div class="sec-head"><h2>Доставка</h2><span class="sec-sub">Минская область (Червенский, Пуховичский районы) и Могилёвская область (Осиповичи)</span></div>
+  <div class="steps">
+    <div class="step"><div class="step-num">01</div><h3>Оформление заказа</h3>
+      <p>Через сайт или по телефону — займёт пару минут. Заказы принимаются предварительно и подтверждаются оператором.</p></div>
+    <div class="step"><div class="step-num">02</div><h3>Сборка и проверка</h3>
+      <p>Каждая оборотная бутыль проходит запатентованную ультразвуковую мойку и проверку перед отгрузкой клиенту.</p></div>
+    <div class="step"><div class="step-num">03</div><h3>Доставка от 1 часа</h3>
+      <p>Курьер привозит заказ до двери и помогает установить бутыль. При отсутствии лифта доставка осуществляется до 3-го этажа включительно.</p></div>
+  </div>
+</section>
+
+<!-- ОПЛАТА -->
+<section class="section" id="payment" style="padding-top:0">
+  <div class="sec-head"><h2>Оплата</h2><span class="sec-sub">Выбирайте способ, который удобен вам</span></div>
+  <div class="steps">
+    <div class="step"><span class="feat-ic"><svg class="ic s24"><use href="#i-cart"/></svg></span>
+      <h3>Курьеру при получении</h3><p>Наличными или банковской картой курьеру после проверки заказа.</p></div>
+    <div class="step"><span class="feat-ic"><svg class="ic s24"><use href="#i-check"/></svg></span>
+      <h3>Онлайн и через ЕРИП</h3><p>Картой на сайте, через Apple Pay / Google Pay или в системе ЕРИП.</p></div>
+    <div class="step"><span class="feat-ic"><svg class="ic s24"><use href="#i-doc"/></svg></span>
+      <h3>Безнал для организаций</h3><p>По договору на услугу: счёт и закрывающие документы, цена для юрлиц — 11,50 руб. за бутыль 18,9 л.</p></div>
+  </div>
+</section>
+
+<!-- О КОМПАНИИ -->
+<section class="section" id="about" style="padding-top:0">
+  <div class="about">
+    <div class="about-text">
+      <h2>О компании PROTERA</h2>
+      <p>«Живая вода ПРОТЕРА» — природная питьевая вода из уникального подземного источника ледникового происхождения. Без водопровода и фильтров, изменяющих состав: более 50 жизненно необходимых макро- и микроэлементов, оптимальное содержание фтора.</p>
+      <p>Производитель первым в мире внедрил запатентованную ультразвуковую мойку оборотных бутылей — самые чистые бутыли для вашей воды. Вся продукция сертифицирована по международным стандартам.</p>
+      <ul class="about-list">
+        <li><svg class="ic s16"><use href="#i-check"/></svg>Уникальный природный источник, экологическая защищённость</li>
+        <li><svg class="ic s16"><use href="#i-check"/></svg>Запатентованная ультразвуковая мойка каждой бутыли</li>
+        <li><svg class="ic s16"><use href="#i-check"/></svg>Сертификаты соответствия международным стандартам</li>
+      </ul>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>50+</b><span>макро- и микроэлементов в составе</span></div>
+      <div class="stat"><b>18,9 л</b><span>оборотная бутыль из поликарбоната</span></div>
+      <div class="stat"><b>7 мес</b><span>срок годности в закрытой таре</span></div>
+      <div class="stat"><b>10 дней</b><span>хранение открытой бутыли</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq" style="padding-top:0">
+  <div class="sec-head"><h2>FAQ</h2><span class="sec-sub">Ответы на частые вопросы</span></div>
+  <div class="faq-item"><button class="faq-q">Где вы доставляете воду?<svg class="ic"><use href="#i-chev"/></svg></button>
+    <div class="faq-a"><p>В Минской области (Червенский район, Пуховичский район: Марьина Горка, Дружный, Свислочь, Руденск) и в Могилёвской области (Осиповичи).</p></div></div>
+  <div class="faq-item"><button class="faq-q">Как осуществляется доставка?<svg class="ic"><use href="#i-chev"/></svg></button>
+    <div class="faq-a"><p>По предварительным заказам, оформленным на сайте или по телефону, либо в порядке, указанном в договоре для юрлиц. При отсутствии лифта доставка осуществляется до 3-го этажа включительно.</p></div></div>
+  <div class="faq-item"><button class="faq-q">Какой срок годности у воды «Протера»?<svg class="ic"><use href="#i-chev"/></svg></button>
+    <div class="faq-a"><p>В закрытой таре — 7 месяцев, в открытой — 10 дней. Хранить при температуре от +5 до +20 °C, без попадания прямых солнечных лучей и вдали от резких химических запахов.</p></div></div>
+  <div class="faq-item"><button class="faq-q">Чем «Протера» отличается от «Протеры Лайт»?<svg class="ic"><use href="#i-chev"/></svg></button>
+    <div class="faq-a"><p>ПРОТЕРА — натуральная вода без изменения природного состава, содержит более 50 макро- и микроэлементов и фтор. ПРОТЕРА ЛАЙТ — очищенная вода со скорректированным составом: при кипячении не образует накипи, идеальна для чая и кофе.</p></div></div>
+  <div class="faq-item"><button class="faq-q">Как обрабатываются бутыли?<svg class="ic"><use href="#i-chev"/></svg></button>
+    <div class="faq-a"><p>Производитель применяет запатентованную автоматическую ультразвуковую моечную машину: каждая оборотная бутыль проходит ультразвуковую мойку и дезинфекцию — эффективность в 5 раз выше струйных аналогов.</p></div></div>
+</section>
+
+<!-- КОНТАКТЫ -->
+<section class="section" id="contacts" style="padding-top:0">
+  <div class="sec-head"><h2>Контакты</h2><span class="sec-sub">Свяжитесь с нами любым удобным способом</span></div>
+  <div class="contacts">
+    <div class="c-info">
+      <div class="c-row"><span class="feat-ic"><svg class="ic s20"><use href="#i-phone"/></svg></span>
+        <div><b>Телефон</b><a href="tel:+79110117020">+7 (911) 011-70-20</a></div></div>
+      <div class="c-row"><span class="feat-ic"><svg class="ic s20"><use href="#i-mail"/></svg></span>
+        <div><b>E-mail</b><a href="mailto:info@aqua-delivery.ru">info@aqua-delivery.ru</a></div></div>
+      <div class="c-row"><span class="feat-ic"><svg class="ic s20"><use href="#i-pin"/></svg></span>
+        <div><b>Зона доставки</b><span>Минская и Могилёвская области</span></div></div>
+      <div class="c-row"><span class="feat-ic"><svg class="ic s20"><use href="#i-clock"/></svg></span>
+        <div><b>Режим работы</b><span>с 8:00 до 20:00</span></div></div>
+    </div>
+    <form class="c-form" id="orderForm">
+      <h3>Оставить заявку</h3>
+      <input type="text" name="name" placeholder="Ваше имя" required>
+      <input type="tel" name="phone" placeholder="Телефон" required>
+      <textarea class="full" name="comment" placeholder="Комментарий (адрес, удобное время, количество бутылей)"></textarea>
+      <button class="btn btn-primary btn-block full" type="submit">Отправить заявку</button>
+      <span class="note">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных.</span>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- ФУТЕР -->
+<footer class="footer">
+  <a class="logo" href="#top">
+    <svg class="ic s28"><use href="#i-drop"/></svg>
+    <span class="logo-t"><b>PROTERA</b><span>Доставка воды</span></span>
+  </a>
+  <nav class="footer-nav">
+    <a href="#about">О компании</a><a href="#delivery">Доставка</a><a href="#payment">Оплата</a>
+    <a href="#bonus">Бонусы</a><a href="#faq">FAQ</a><a href="#contacts">Контакты</a>
+  </nav>
+  <div class="socials">
+    <a href="#" aria-label="Telegram"><svg class="ic s16"><use href="#i-send"/></svg></a>
+    <a href="#" aria-label="VK"><svg class="ic s18"><use href="#i-vk"/></svg></a>
+    <a href="tel:+79110117020" aria-label="Позвонить"><svg class="ic s16"><use href="#i-phone"/></svg></a>
+  </div>
+  <div class="copy">© <span id="year"></span> PROTERA. Все права защищены.</div>
+</footer>
+</div><!-- /page -->
+
+<!-- Оверлей и выдвижные панели -->
+<div class="overlay" id="overlay"></div>
+
+<aside class="drawer" id="cart" aria-label="Корзина">
+  <div class="dr-head"><h3>Корзина</h3>
+    <button class="icon-btn" data-close aria-label="Закрыть"><svg class="ic s20"><use href="#i-x"/></svg></button></div>
+  <div class="dr-body" id="cartItems"></div>
+  <div class="dr-foot">
+    <div class="cart-total"><span>Итого:</span><b id="cartTotal">0,00 руб.</b></div>
+    <button class="btn btn-primary btn-block" id="checkout">Оформить заказ</button>
+  </div>
+</aside>
+
+<aside class="drawer" id="orders" aria-label="Заказы">
+  <div class="dr-head"><h3>Мои заказы</h3>
+    <button class="icon-btn" data-close aria-label="Закрыть"><svg class="ic s20"><use href="#i-x"/></svg></button></div>
+  <div class="dr-body" id="ordersList"></div>
+</aside>
+
+<aside class="drawer" id="profile" aria-label="Профиль">
+  <div class="dr-head"><h3>Профиль</h3>
+    <button class="icon-btn" data-close aria-label="Закрыть"><svg class="ic s20"><use href="#i-x"/></svg></button></div>
+  <div class="dr-body">
+    <div class="bonus-card">
+      <span>Бонусный счёт</span>
+      <b id="bonusPoints">0</b>
+      <span>бонусных рублей · 5% с каждого заказа</span>
+    </div>
+    <form class="p-form" id="profileForm">
+      <div><label for="pName">Имя</label><input id="pName" type="text" placeholder="Ваше имя"></div>
+      <div><label for="pPhone">Телефон</label><input id="pPhone" type="tel" placeholder="+375 (__) ___-__-__"></div>
+      <div><label for="pCity">Город</label>
+        <select id="pCity">
+          <option>Минск</option><option>Марьина Горка</option><option>Дружный</option>
+          <option>Свислочь</option><option>Руденск</option><option>Червень</option><option>Осиповичи</option>
+        </select>
+      </div>
+      <div><label for="pAddress">Адрес доставки</label><input id="pAddress" type="text" placeholder="Улица, дом, квартира"></div>
+      <button class="btn btn-primary btn-block" type="submit">Сохранить профиль</button>
+      <span class="note">Данные сохраняются только на этом устройстве.</span>
+    </form>
+  </div>
+</aside>
+
+<nav class="m-menu" id="mMenu">
+  <button class="icon-btn m-close" id="menuClose" aria-label="Закрыть"><svg class="ic s20"><use href="#i-x"/></svg></button>
+  <a href="#top">Главная</a><a href="#catalog">Каталог</a><a href="#about">О компании</a>
+  <a href="#delivery">Доставка</a><a href="#bonus">Бонусы</a><a href="#faq">FAQ</a><a href="#contacts">Контакты</a>
+  <a class="phone" href="tel:+79110117020" style="border:0;margin-top:16px;display:flex">
+    <svg class="ic s16"><use href="#i-phone"/></svg>+7 (911) 011-70-20</a>
+</nav>
+
+<!-- Нижнее меню: все кнопки рабочие -->
+<nav class="tabbar">
+  <a href="#top" class="tab active" id="tabHome"><span class="tab-ic"><svg class="ic"><use href="#i-home"/></svg></span>Главная</a>
+  <a href="#catalog" class="tab" id="tabCatalog"><span class="tab-ic"><svg class="ic"><use href="#i-grid"/></svg></span>Каталог</a>
+  <button class="tab" id="tabCart"><span class="tab-ic"><svg class="ic"><use href="#i-cart"/></svg><span class="badge js-badge">0</span></span>Корзина</button>
+  <button class="tab" id="tabOrders"><span class="tab-ic"><svg class="ic"><use href="#i-doc"/></svg></span>Заказы</button>
+  <button class="tab" id="tabProfile"><span class="tab-ic"><svg class="ic"><use href="#i-user"/></svg></span>Профиль</button>
+</nav>
+
+<div id="toast" role="status"></div>
+
+<script>
+const $ = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const fmt = n => n.toFixed(2).replace('.', ',') + ' руб.';
+const LS = {
+  get(k, d){ try { const v = JSON.parse(localStorage.getItem(k)); return v ?? d; } catch(e){ return d; } },
+  set(k, v){ try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} }
+};
+
+/* Тост */
+let tId;
+function toast(msg){
+  const t = $('#toast'); t.textContent = msg; t.classList.add('show');
+  clearTimeout(tId); tId = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+/* Город */
+const city = $('#city');
+$('#cityBtn').addEventListener('click', e => { e.stopPropagation(); city.classList.toggle('open'); });
+$('#cityMenu').addEventListener('click', e => {
+  if (e.target.tagName === 'BUTTON'){ $('#cityName').textContent = e.target.textContent; city.classList.remove('open'); toast('Город изменён: ' + e.target.textContent); }
+});
+document.addEventListener('click', e => { if (!city.contains(e.target)) city.classList.remove('open'); });
+
+/* Hero-слайдер */
+const slides = [
+  {t:'Вода, которую удобно заказывать', l:'Свежая питьевая вода для дома и офиса. Доставим в удобное время.'},
+  {t:'18,9 л — от 11 рублей', l:'Природная артезианская вода из уникального источника. При заказе от 2-х бутылей — 11 руб. за бутыль.'},
+  {t:'Бонусы с каждого заказа', l:'5% от суммы заказа возвращается на бонусный счёт — оплачивайте бонусами до 100% следующего заказа.'}
+];
+let si = 0;
+const dots = $$('#dots button');
+function go(i){
+  si = (i + slides.length) % slides.length;
+  dots.forEach((d, k) => d.classList.toggle('active', k === si));
+  const copy = $('#heroCopy'); copy.classList.add('fade');
+  setTimeout(() => {
+    $('#heroTitle').textContent = slides[si].t;
+    $('#heroLead').textContent  = slides[si].l;
+    copy.classList.remove('fade');
+  }, 240);
+}
+dots.forEach((d, k) => d.addEventListener('click', () => go(k)));
+setInterval(() => go(si + 1), 7000);
+
+/* Фильтр категорий */
+const catBtns = $$('.cat-btn');
+function applyCat(f){
+  catBtns.forEach(b => b.classList.toggle('active', b.dataset.filter === f));
+  $$('.good').forEach(c => c.classList.toggle('hidden', f !== 'all' && c.dataset.cat !== f));
+  $('.promo').classList.toggle('hidden', f !== 'all');
+}
+catBtns.forEach(b => b.addEventListener('click', () => applyCat(b.dataset.filter)));
+$('#allCatalog').addEventListener('click', () => applyCat('all'));
+
+/* Заказы и профиль (localStorage) */
+let orders  = LS.get('protera_orders', []);
+let profile = LS.get('protera_profile', {name:'', phone:'', city:'Минск', address:''});
+const bonuses = () => orders.reduce((s, o) => s + Math.floor(o.total * 0.05), 0);
+
+function renderOrders(){
+  const box = $('#ordersList');
+  if (!orders.length){
+    box.innerHTML = '<div class="empty"><svg class="ic"><use href="#i-doc"/></svg>Заказов пока нет.<br>Оформите первый заказ в каталоге 💧</div>';
+    return;
+  }
+  box.innerHTML = orders.map(o => `
+    <div class="order">
+      <div class="order-head">
+        <div><div class="order-num">Заказ ${o.num}</div><div class="order-date">${o.date}</div></div>
+        <span class="status ${o.status === 'В обработке' ? 'new' : ''}">${o.status}</span>
+      </div>
+      <div class="order-items">${o.items.map(i => i.name + ' × ' + i.qty).join('<br>')}</div>
+      <div class="order-total">Итого: ${fmt(o.total)}</div>
+    </div>`).join('');
+}
+function fillProfile(){
+  $('#pName').value = profile.name || '';
+  $('#pPhone').value = profile.phone || '';
+  $('#pCity').value = profile.city || 'Минск';
+  $('#pAddress').value = profile.address || '';
+  $('#bonusPoints').textContent = bonuses();
+}
+$('#profileForm').addEventListener('submit', e => {
+  e.preventDefault();
+  profile = { name: $('#pName').value.trim(), phone: $('#pPhone').value.trim(), city: $('#pCity').value, address: $('#pAddress').value.trim() };
+  LS.set('protera_profile', profile);
+  toast('Профиль сохранён ✔');
+});
+
+/* Корзина */
+let cart = {};
+function cartCount(){ return Object.values(cart).reduce((s, i) => s + i.qty, 0); }
+function cartSum(){ return Object.values(cart).reduce((s, i) => s + i.qty * i.price, 0); }
+function renderCart(){
+  $$('.js-badge').forEach(b => b.textContent = cartCount());
+  const box = $('#cartItems');
+  const ids = Object.keys(cart);
+  if (!ids.length){
+    box.innerHTML = '<div class="empty"><svg class="ic"><use href="#i-cart"/></svg>В корзине пока пусто.<br>Добавьте воду из каталога 💧</div>';
+  } else {
+    box.innerHTML = ids.map(id => {
+      const i = cart[id];
+      return `<div class="ci" data-id="${id}">
+        <div class="ci-thumb"><svg><use href="#${i.img}"/></svg></div>
+        <div class="ci-info">
+          <div class="ci-name">${i.name}</div>
+          <div class="ci-price">${fmt(i.price)} / шт</div>
+          <div class="ci-qty">
+            <button data-act="dec" aria-label="Меньше"><svg class="ic s14"><use href="#i-minus"/></svg></button>
+            <span>${i.qty}</span>
+            <button data-act="inc" aria-label="Больше"><svg class="ic s14"><use href="#i-plus"/></svg></button>
+          </div>
+        </div>
+        <div class="ci-right">
+          <div class="ci-sum">${fmt(i.qty * i.price)}</div>
+          <button class="ci-del" data-act="del" aria-label="Удалить"><svg class="ic s16"><use href="#i-x"/></svg></button>
+        </div>
+      </div>`;
+    }).join('');
+  }
+  $('#cartTotal').textContent = fmt(cartSum());
+}
+function bump(){ $$('.js-badge').forEach(b => { b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); }); }
+
+$$('.js-add').forEach(b => b.addEventListener('click', () => {
+  const id = b.dataset.id;
+  cart[id] = cart[id]
+    ? { ...cart[id], qty: cart[id].qty + 1 }
+    : { name: b.dataset.name, price: +b.dataset.price, img: b.dataset.img, qty: 1 };
+  renderCart(); bump(); toast('Добавлено в корзину: ' + b.dataset.name);
+}));
+
+$('#cartItems').addEventListener('click', e => {
+  const btn = e.target.closest('[data-act]'); if (!btn) return;
+  const id = btn.closest('.ci').dataset.id, act = btn.dataset.act;
+  if (act === 'inc') cart[id].qty++;
+  if (act === 'dec') { cart[id].qty--; if (cart[id].qty < 1) delete cart[id]; }
+  if (act === 'del') delete cart[id];
+  renderCart();
+});
+
+/* Открытие/закрытие панелей */
+const openPanel = cls => document.body.classList.add(cls);
+const closeAll  = () => document.body.classList.remove('cart-open', 'menu-open', 'orders-open', 'profile-open');
+$('#cartOpen').addEventListener('click', () => openPanel('cart-open'));
+$('#promoOrder').addEventListener('click', () => openPanel('cart-open'));
+$('#overlay').addEventListener('click', closeAll);
+$$('[data-close]').forEach(b => b.addEventListener('click', closeAll));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
+
+/* Оформление заказа -> создание записи в «Заказах» */
+$('#checkout').addEventListener('click', () => {
+  if (!cartCount()) return toast('Корзина пуста — добавьте товары 🙂');
+  const num = '№ ' + String(orders.length + 1).padStart(3, '0');
+  orders.unshift({
+    num,
+    date: new Date().toLocaleString('ru-RU', {day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit'}),
+    items: Object.values(cart).map(i => ({ name: i.name, qty: i.qty })),
+    total: cartSum(),
+    status: 'В обработке'
+  });
+  LS.set('protera_orders', orders);
+  const bonus = Math.floor(cartSum() * 0.05);
+  cart = {}; renderCart(); renderOrders(); fillProfile(); closeAll();
+  toast('Заказ ' + num + ' оформлен! Начислено бонусов: ' + bonus);
+});
+
+/* Нижнее меню — все кнопки рабочие */
+$('#tabCart').addEventListener('click', () => openPanel('cart-open'));
+$('#tabOrders').addEventListener('click', () => { renderOrders(); openPanel('orders-open'); });
+$('#tabProfile').addEventListener('click', () => { fillProfile(); openPanel('profile-open'); });
+$$('#tabHome, #tabCatalog').forEach(a => a.addEventListener('click', () => {
+  $$('.tabbar .tab').forEach(t => t.classList.remove('active')); a.classList.add('active');
+}));
+
+/* Мобильное меню */
+$('#burger').addEventListener('click', () => openPanel('menu-open'));
+$('#menuClose').addEventListener('click', closeAll);
+$$('#mMenu a[href^="#"]').forEach(a => a.addEventListener('click', closeAll));
+
+/* FAQ */
+$$('.faq-q').forEach(q => q.addEventListener('click', () => {
+  const item = q.parentElement, a = item.querySelector('.faq-a'), open = item.classList.toggle('open');
+  a.style.maxHeight = open ? a.scrollHeight + 'px' : 0;
+}));
+
+/* Форма заявки */
+$('#orderForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const f = e.target;
+  if (!f.name.value.trim() || !f.phone.value.trim()) return toast('Заполните имя и телефон');
+  toast('Спасибо! Заявка отправлена — мы скоро свяжемся.');
+  f.reset();
+});
+
+$('#year').textContent = new Date().getFullYear();
+renderCart(); renderOrders(); fillProfile();
+</script>
+</body>
+</html>
