@@ -136,6 +136,7 @@ button{font-family:inherit}
 
 /* ---------- BONUS / STEPS ---------- */
 .bonus-grid,.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.bonus-grid{grid-template-columns:repeat(2,1fr)}
 .bonus,.step{background:#fff;border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:var(--shadow)}
 .bonus .feat-ic,.step .feat-ic{margin-bottom:12px}
 .bonus h3,.step h3{font-size:14.5px;font-weight:800;margin-bottom:6px}
@@ -226,11 +227,9 @@ body.cart-open #cart,body.orders-open #orders,body.profile-open #profile{transfo
 .order-items{font-size:12px;color:var(--muted);line-height:1.5;margin-bottom:8px}
 .order-total{font-size:13px;font-weight:800;color:var(--blue-d)}
 /* профиль */
-.bonus-card{border-radius:16px;padding:18px;background:linear-gradient(135deg,#2a94dd,#1273c4);color:#fff;margin-bottom:4px}
-.bonus-card b{font-size:26px;font-weight:800;display:block}
-.bonus-card span{font-size:12px;opacity:.9}
 .p-form{display:flex;flex-direction:column;gap:12px}
 .p-form label{font-size:11.5px;font-weight:700;color:var(--muted);display:block;margin-bottom:4px}
+.p-form .field{margin-bottom:0}
 .p-form input,.p-form select{width:100%;padding:11px 14px;border-radius:12px;border:1px solid #d7e6f5;background:#f8fbff;font-family:inherit;font-size:13.5px;color:var(--navy);outline:none}
 .p-form input:focus,.p-form select:focus{border-color:var(--blue);background:#fff}
 
@@ -251,6 +250,92 @@ body.menu-open .m-menu{transform:none}
 #toast{position:fixed;left:50%;bottom:86px;transform:translate(-50%,20px);background:var(--navy);color:#fff;padding:12px 20px;border-radius:999px;font-size:13.5px;font-weight:600;opacity:0;visibility:hidden;transition:.3s;z-index:200;box-shadow:0 12px 30px rgba(9,30,60,.3);max-width:92vw;text-align:center}
 #toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
 
+/* ---------- АККАУНТ / АВТОРИЗАЦИЯ ---------- */
+.acct-btn{display:flex;align-items:center;gap:8px;border:1px solid var(--border);background:#fff;border-radius:999px;padding:6px 12px 6px 7px;cursor:pointer;color:var(--navy);transition:.2s}
+.acct-btn:hover{border-color:var(--blue);color:var(--blue-d)}
+.acct-av{width:27px;height:27px;border-radius:999px;background:var(--blue-l);color:var(--blue-d);display:grid;place-items:center;font-size:11px;font-weight:800;flex:0 0 27px}
+.acct-name{font-size:12.5px;font-weight:700;max-width:104px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+body.auth-open{overflow:hidden}
+.auth-modal{position:fixed;inset:0;z-index:130;display:grid;place-items:center;padding:18px;background:rgba(9,25,44,.5);opacity:0;visibility:hidden;transition:.25s}
+body.auth-open .auth-modal{opacity:1;visibility:visible}
+.auth-card{position:relative;width:100%;max-width:430px;max-height:92vh;overflow:auto;background:#fff;border-radius:22px;padding:26px 26px 22px;box-shadow:0 30px 80px rgba(9,30,60,.3);transform:translateY(10px);transition:.25s}
+body.auth-open .auth-card{transform:none}
+.auth-card h2{font-size:21px;font-weight:800;padding-right:40px}
+.auth-sub{font-size:12.5px;color:var(--muted);margin:6px 0 16px}
+.auth-x{position:absolute;top:14px;right:14px}
+.auth-tabs{display:flex;background:#eff6fd;border-radius:999px;padding:4px;margin-bottom:16px}
+.auth-tabs[hidden]{display:none}
+.auth-tabs button{flex:1;border:0;background:none;padding:9px 8px;border-radius:999px;font-size:13px;font-weight:700;color:#5b7899;cursor:pointer;transition:.2s}
+.auth-tabs button.active{background:#fff;color:var(--blue-d);box-shadow:0 4px 12px rgba(13,47,102,.12)}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:11.5px;font-weight:700;color:var(--muted);margin-bottom:5px}
+.field input,.field select{width:100%;padding:12px 14px;border-radius:12px;border:1px solid #d7e6f5;background:#f8fbff;font-family:inherit;font-size:14px;color:var(--navy);outline:none;transition:.2s}
+.field input:focus,.field select:focus{border-color:var(--blue);background:#fff;box-shadow:0 0 0 3px rgba(18,121,200,.14)}
+.field.bad input,.field.bad select{border-color:#e05252;background:#fff7f7}
+.field .err{display:none;font-size:11px;font-weight:700;color:#d44747;margin-top:4px}
+.field.bad .err{display:block}
+.in-wrap{position:relative}
+.in-wrap input{padding-right:44px}
+.eye{position:absolute;right:6px;top:50%;transform:translateY(-50%);border:0;background:none;color:#9ab2cb;cursor:pointer;padding:8px;display:grid;place-items:center}
+.eye:hover{color:var(--blue)}
+.strength{display:flex;gap:4px;margin-top:6px}
+.strength i{flex:1;height:4px;border-radius:999px;background:#e3eef9;transition:.2s}
+.strength.s1 i:nth-child(1){background:#e05252}
+.strength.s2 i:nth-child(-n+2){background:#f0a83f}
+.strength.s3 i:nth-child(-n+3){background:#3fae52}
+.strength.s4 i{background:#2f9e45}
+.strength-txt{font-size:10.5px;color:var(--muted);margin-top:5px}
+.chk{display:flex;align-items:flex-start;gap:8px;font-size:11.5px;color:#546f8d;line-height:1.45;cursor:pointer;margin:2px 0 12px}
+.chk input{width:15px;height:15px;margin-top:2px;accent-color:var(--blue);flex:0 0 15px}
+.chk a{color:var(--blue);font-weight:700}
+.auth-row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.auth-row .chk{margin:0}
+.link-btn{border:0;background:none;padding:0;font-family:inherit;font-size:11.5px;font-weight:700;color:var(--blue);cursor:pointer}
+.link-btn:hover{color:var(--blue-d);text-decoration:underline}
+.form-msg{display:none;font-size:12px;font-weight:700;border-radius:10px;padding:9px 12px;margin-bottom:10px;line-height:1.45}
+.form-msg.show{display:block}
+.form-msg.err{background:#fdecec;color:#c93b3b}
+.form-msg.ok{background:#eaf7ec;color:#2f8f43}
+.form-msg.info{background:var(--blue-l);color:var(--blue-d)}
+.auth-foot{font-size:11.5px;color:var(--muted);text-align:center;margin-top:12px}
+.auth-legal{font-size:10.5px;color:#8aa2bd;text-align:center;margin-top:14px;line-height:1.5}
+.auth-hint{font-size:12.5px;color:var(--muted);line-height:1.55;margin:0 0 14px}
+.auth-hint b{color:var(--navy)}
+.auth-back{display:block;margin:12px auto 0;text-align:center}
+.done-box{text-align:center;padding:4px 0 2px}
+.done-ic{width:54px;height:54px;border-radius:999px;background:var(--blue-l);color:var(--blue);display:grid;place-items:center;margin:0 auto 12px}
+.done-box b{display:block;font-size:15.5px;margin-bottom:7px}
+.done-box p{font-size:12.5px;color:var(--muted);line-height:1.55;margin:0 0 8px}
+.done-box p b,.done-box p span{color:var(--navy)}
+.done-note{font-size:11.5px;color:#8aa2bd}
+
+/* личный кабинет */
+.acct-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.acct-av-lg{width:46px;height:46px;border-radius:999px;background:linear-gradient(135deg,#2a94dd,#1273c4);color:#fff;display:grid;place-items:center;font-size:16px;font-weight:800;flex:0 0 46px;text-transform:uppercase}
+.acct-head b{display:block;font-size:14.5px;line-height:1.25}
+.acct-head > div{min-width:0}
+.acct-head > div span{display:block;font-size:12px;color:var(--muted);word-break:break-word}
+.acct-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0 14px}
+.acct-stats div{background:#f4faff;border:1px solid var(--border);border-radius:12px;padding:10px 12px}
+.acct-stats b{display:block;font-size:15px;font-weight:800;color:var(--blue-d)}
+.acct-stats span{font-size:11px;color:var(--muted)}
+.divider{height:1px;background:var(--border);margin:14px 0}
+.pwd-block{background:#f8fbff;border:1px solid var(--border);border-radius:12px;padding:11px 13px;margin-bottom:12px}
+.pwd-block summary{font-size:12.5px;font-weight:700;color:var(--blue-d);cursor:pointer;list-style:none;display:flex;align-items:center;gap:7px}
+.pwd-block summary::-webkit-details-marker{display:none}
+.pwd-block summary::before{content:"+";font-size:15px;line-height:1;color:var(--blue)}
+.pwd-block[open] summary::before{content:"–"}
+.pwd-block[open] summary{margin-bottom:10px}
+.guest-card{text-align:center;padding:22px 6px}
+.guest-card .feat-ic{margin:0 auto 12px}
+.guest-card b{display:block;font-size:15px;margin-bottom:6px}
+.guest-card p{font-size:12.5px;color:var(--muted);line-height:1.55;margin-bottom:16px}
+.guest-card .btn + .btn{margin-top:8px}
+.btn-danger{background:#fdecec;color:#c93b3b;border:1px solid #f7cfcf}
+.btn-danger:hover{background:#fbdcdc}
+.del-hint{font-size:10.5px;color:#98aec6;line-height:1.5;margin-top:8px}
+
 /* ---------- ADAPTIVE ---------- */
 @media(max-width:1100px){ .goods{grid-template-columns:repeat(3,1fr)} }
 @media(max-width:1000px){
@@ -262,8 +347,11 @@ body.menu-open .m-menu{transform:none}
   .page{margin:0;border-radius:0}
   .nav{display:none}
   .burger{display:block}
-  .phone b,.phone span{display:none}
-  .hero{padding:26px 20px 96px}
+   .phone b,.phone span{display:none}
+   .acct-name{display:none}
+   .acct-btn{padding:5px;border:0}
+   .acct-av{width:30px;height:30px;flex:0 0 30px}
+   .hero{padding:26px 20px 96px}
   .hero-grid{grid-template-columns:1fr}
   .hero-art-wrap{max-width:380px;margin:0 auto;width:100%}
   .hero-chip{top:16px;right:16px;padding:9px 14px}
@@ -283,6 +371,10 @@ body.menu-open .m-menu{transform:none}
   #toast{bottom:96px}
 }
 @media(max-width:640px){
+  .city-btn{font-size:11.5px;padding:8px 13px}
+  .hero-chip{padding:8px 12px;gap:8px}
+  .hero-chip b{font-size:12.5px}
+  .hero-chip span{font-size:11px}
   .goods{grid-template-columns:1fr}
   .good{display:grid;grid-template-columns:96px 1fr;column-gap:12px;align-items:center}
   .thumb{grid-row:1/5;grid-column:1;height:96px;margin:0}
@@ -292,6 +384,75 @@ body.menu-open .m-menu{transform:none}
   .c-form{grid-template-columns:1fr}
   .feats{grid-template-columns:repeat(2,1fr);gap:10px}
 }
+@media(max-width:480px){ .hero-chip{display:none} }
+
+/* ---------- КАРТОЧКИ ТОВАРОВ / МОДАЛЬНЫЕ ОКНА / АДРЕСА ---------- */
+.good{cursor:pointer}
+.good .thumb img{max-width:100%;max-height:118px;object-fit:contain;display:block}
+.good-actions{display:flex;gap:8px;margin-top:auto;padding-top:4px}
+.good-actions .btn{flex:1;justify-content:center;padding-left:10px;padding-right:10px;font-size:12px}
+.ci-thumb img{max-width:48px;max-height:48px;object-fit:contain}
+
+.modal{position:fixed;inset:0;z-index:140;display:grid;place-items:center;padding:18px;background:rgba(9,25,44,.55);opacity:0;visibility:hidden;transition:.25s;overflow:auto}
+body.pm-open #productModal,body.co-open #checkoutModal{opacity:1;visibility:visible}
+
+.pm-card{position:relative;width:100%;max-width:860px;max-height:92vh;overflow:auto;background:#fff;border-radius:22px;display:grid;grid-template-columns:1fr 1fr;box-shadow:0 30px 80px rgba(9,30,60,.3);transform:translateY(10px);transition:.25s}
+body.pm-open .pm-card{transform:none}
+.pm-media{background:linear-gradient(160deg,#f2f9ff,#e2f0fc);display:grid;place-items:center;padding:26px;min-height:300px}
+.pm-media img{max-width:100%;max-height:400px;object-fit:contain;border-radius:12px}
+.pm-media svg{width:190px;height:190px;color:#3f8fd0}
+.pm-body{padding:30px 28px;display:flex;flex-direction:column}
+.pm-badge{display:inline-block;align-self:flex-start;background:var(--green);color:#fff;font-size:10.5px;font-weight:800;padding:4px 10px;border-radius:999px;margin-bottom:10px}
+.pm-body h2{font-size:22px;font-weight:800;line-height:1.25;margin:0 0 6px}
+.pm-sub{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.pm-price{font-size:24px;font-weight:800;color:var(--blue-d);margin-bottom:16px}
+.pm-price s{font-size:14px;font-weight:600;color:#9db4cc;margin-left:8px}
+.pm-desc{font-size:13.5px;line-height:1.65;color:#40607f;white-space:pre-line;margin-bottom:22px}
+.pm-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto}
+@media(max-width:780px){
+  .pm-card{grid-template-columns:1fr}
+  .pm-media{min-height:200px;padding:18px}
+  .pm-media svg{width:130px;height:130px}
+  .pm-body{padding:20px}
+}
+
+.co-card{position:relative;width:100%;max-width:560px;max-height:92vh;overflow:auto;background:#fff;border-radius:22px;padding:26px;box-shadow:0 30px 80px rgba(9,30,60,.3)}
+.co-card h2{font-size:20px;font-weight:800;padding-right:38px}
+.co-sec{margin-bottom:16px}
+.co-sec h4{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:0 0 8px}
+.co-hint{font-size:11.5px;color:#8aa2bd;margin-top:6px}
+.addr-pick{display:flex;flex-direction:column;gap:8px}
+.addr-radio{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--border);border-radius:12px;padding:10px 12px;cursor:pointer;font-size:12.5px;transition:.15s;background:#fbfdff}
+.addr-radio input{margin-top:3px;accent-color:var(--blue);flex:0 0 auto}
+.addr-radio b{display:block;font-size:13px}
+.addr-radio span{color:var(--muted);font-size:11.5px}
+.addr-radio.sel{border-color:var(--blue);background:#f4faff}
+.addr-radio .addr-line{display:block;font-size:11.5px;color:var(--muted);line-height:1.45}
+.addr-def{font-size:10px;font-weight:800;color:var(--blue);background:var(--blue-l);padding:2px 7px;border-radius:999px;white-space:nowrap}
+.order-meta{font-size:11.5px;color:var(--muted);line-height:1.5;margin:4px 0}
+.co-total{display:flex;justify-content:space-between;align-items:center;font-size:14px;font-weight:800;border-top:1px solid var(--border);padding:12px 0;margin:4px 0 12px}
+.co-total b{font-size:18px;color:var(--blue-d)}
+
+.addr-block{margin-top:2px}
+.addr-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
+.addr-head b{font-size:13px}
+.addr-list{display:flex;flex-direction:column;gap:8px}
+.addr-item{border:1px solid var(--border);border-radius:12px;padding:10px 12px;font-size:12.5px;background:#fbfdff}
+.addr-item.is-default{border-color:#bfe0f7;background:#f6fbff}
+.addr-item .ai-top{display:flex;align-items:center;gap:8px;justify-content:space-between}
+.addr-item b{font-size:13px}
+.addr-item .ai-text{color:#40607f;line-height:1.5;margin-top:2px}
+.addr-item .ai-actions{display:flex;gap:12px;margin-top:7px}
+.addr-item .ai-actions .link-btn{font-size:11.5px}
+.addr-empty{font-size:12px;color:var(--muted);padding:10px 0}
+.addr-form[hidden]{display:none}
+.addr-form{background:#f7fbff;border:1px solid var(--border);border-radius:12px;padding:12px;margin-top:10px;display:flex;flex-direction:column;gap:10px}
+.addr-form .field{margin-bottom:0}
+.addr-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.addr-form-actions{display:flex;gap:8px;flex-wrap:wrap}
+.addr-form-actions .btn{padding:9px 14px;font-size:12.5px}
+.addr-form .chk{font-size:11.5px}
+@media(max-width:420px){.addr-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -446,6 +607,10 @@ body.menu-open .m-menu{transform:none}
     <rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></g></symbol>
   <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></g></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></g></symbol>
+  <symbol id="i-eye-off" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12z"/><circle cx="12" cy="12" r="3"/><path d="M2 22L22 2"/></g></symbol>
   <symbol id="i-send" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/></g></symbol>
   <symbol id="i-vk" viewBox="0 0 24 24">
@@ -471,10 +636,14 @@ body.menu-open .m-menu{transform:none}
       <a href="#contacts">Контакты</a>
     </nav>
     <div class="header-actions">
-      <a class="phone" href="tel:+79110117020">
+      <a class="phone" id="headerPhone" href="tel:+79110117020">
         <svg class="ic s20"><use href="#i-phone"/></svg>
-        <span class="logo-t"><b>+7 (911) 011-70-20</b><span>с 8:00 до 20:00</span></span>
+        <span class="logo-t"><b id="headerPhoneText">+7 (911) 011-70-20</b><span id="headerHours">с 8:00 до 20:00</span></span>
       </a>
+      <button class="acct-btn" id="acctBtn" aria-label="Личный кабинет">
+        <span class="acct-av" id="acctAv"><svg class="ic s16"><use href="#i-user"/></svg></span>
+        <span class="acct-name" id="acctName">Войти</span>
+      </button>
       <button class="cart-btn" id="cartOpen" aria-label="Корзина">
         <svg class="ic s24"><use href="#i-cart"/></svg><span class="badge js-badge">0</span>
       </button>
@@ -495,11 +664,11 @@ body.menu-open .m-menu{transform:none}
       <div class="hero-copy" id="heroCopy">
         <div class="city" id="city">
           <button class="city-btn" id="cityBtn">
-            <svg class="ic s14"><use href="#i-pin"/></svg>Ваш город: <b id="cityName">Минск</b>
+            <svg class="ic s14"><use href="#i-pin"/></svg>Ваш город: <b id="cityName">Марьина Горка</b>
             <svg class="ic s12"><use href="#i-chev"/></svg>
           </button>
           <ul class="city-menu" id="cityMenu">
-            <li><button>Минск</button></li><li><button>Марьина Горка</button></li><li><button>Дружный</button></li>
+            <li><button>Марьина Горка</button></li><li><button>Дружный</button></li>
             <li><button>Свислочь</button></li><li><button>Руденск</button></li><li><button>Червень</button></li>
             <li><button>Осиповичи</button></li>
           </ul>
@@ -560,124 +729,9 @@ body.menu-open .m-menu{transform:none}
     <a class="sec-link" href="#catalog" id="allCatalog">Весь каталог <svg class="ic s14"><use href="#i-arrow"/></svg></a>
   </div>
 
-  <div class="cats">
-    <button class="cat-btn active" data-filter="all">Все товары</button>
-    <button class="cat-btn" data-filter="water">Вода</button>
-    <button class="cat-btn" data-filter="pumps">Помпы</button>
-    <button class="cat-btn" data-filter="coolers">Кулеры и раздатчики</button>
-    <button class="cat-btn" data-filter="access">Аксессуары</button>
-    <button class="cat-btn" data-filter="dishes">Посуда</button>
-  </div>
+  <div class="cats" id="catFilters"></div>
 
-  <div class="goods">
-    <article class="good" data-cat="water">
-      <span class="hit">Хит</span>
-      <div class="thumb"><svg class="gimg"><use href="#i-bottle"/></svg></div>
-      <h3>Питьевая вода 19 л</h3>
-      <div class="sub">Возвратная тара</div>
-      <div class="price"><b>11,00 руб.</b> · от 2 шт</div>
-      <button class="btn btn-primary btn-sm js-add" data-id="protera19" data-name="Живая вода ПРОТЕРА 18,9 л" data-price="11" data-img="i-bottle">
-        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
-    </article>
-
-    <article class="good" data-cat="pumps">
-      <div class="thumb"><svg class="gimg"><use href="#i-pump"/></svg></div>
-      <h3>Электрическая помпа</h3>
-      <div class="sub">Аксессуары</div>
-      <div class="price"><b>29,00 руб.</b> · помпа К7</div>
-      <button class="btn btn-primary btn-sm js-add" data-id="pumpK7" data-name="Помпа электрическая К7" data-price="29" data-img="i-pump">
-        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
-    </article>
-
-    <article class="good" data-cat="coolers">
-      <div class="thumb"><svg class="gimg"><use href="#i-cooler-t"/></svg></div>
-      <h3>Кулер для воды</h3>
-      <div class="sub">Для дома и офиса</div>
-      <div class="price"><b>230,00 руб.</b> · Ecotronic V21-TE</div>
-      <button class="btn btn-primary btn-sm js-add" data-id="coolerV21" data-name="Кулер Ecotronic V21-TE" data-price="230" data-img="i-cooler-t">
-        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
-    </article>
-
-    <article class="good" data-cat="access">
-      <div class="thumb"><svg class="gimg"><use href="#i-tap"/></svg></div>
-      <h3>Кран-клапан для бутыли</h3>
-      <div class="sub">Аксессуары</div>
-      <div class="price"><b>10,00 руб.</b></div>
-      <button class="btn btn-primary btn-sm js-add" data-id="tap" data-name="Кран-клапан" data-price="10" data-img="i-tap">
-        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
-    </article>
-
-    <article class="good" data-cat="water">
-      <div class="thumb"><svg class="gimg"><use href="#i-bottle-light"/></svg></div>
-      <h3>Протера Лайт 18,9 л</h3>
-      <div class="sub">Возвратная тара · без накипи</div>
-      <div class="price"><b>11,00 руб.</b> · от 2 шт</div>
-      <button class="btn btn-primary btn-sm js-add" data-id="light19" data-name="Протера Лайт 18,9 л" data-price="11" data-img="i-bottle-light">
-        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
-    </article>
-
-    <article class="good" data-cat="pumps">
-      <div class="thumb"><svg class="gimg"><use href="#i-pump-m"/></svg></div>
-      <h3>Помпа механическая</h3>
-      <div class="sub">Аксессуары · HotFrost А25</div>
-      <div class="price"><b>18,00 руб.</b></div>
-      <button class="btn btn-primary btn-sm js-add" data-id="pumpA25" data-name="Помпа HotFrost А25" data-price="18" data-img="i-pump-m">
-        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
-    </article>
-
-    <article class="good" data-cat="pumps">
-      <div class="thumb"><svg class="gimg"><use href="#i-pump"/></svg></div>
-      <h3>Помпа HotFrost А22</h3>
-      <div class="sub">Аксессуары · электрическая</div>
-      <div class="price"><b>55,00 руб.</b></div>
-      <button class="btn btn-primary btn-sm js-add" data-id="pumpA22" data-name="Помпа HotFrost А22" data-price="55" data-img="i-pump">
-        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
-    </article>
-
-    <article class="good" data-cat="coolers">
-      <div class="thumb"><svg class="gimg"><use href="#i-dispenser"/></svg></div>
-      <h3>Раздатчик воды L1-WD</h3>
-      <div class="sub">Для дома и офиса</div>
-      <div class="price"><b>40,00 руб.</b></div>
-      <button class="btn btn-primary btn-sm js-add" data-id="dispL1" data-name="Раздатчик воды L1-WD" data-price="40" data-img="i-dispenser">
-        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
-    </article>
-
-    <article class="good" data-cat="access">
-      <div class="thumb"><svg class="gimg"><use href="#i-stand"/></svg></div>
-      <h3>Подставка под бутыль</h3>
-      <div class="sub">Аксессуары · металл</div>
-      <div class="price"><b>13,20 руб.</b></div>
-      <button class="btn btn-primary btn-sm js-add" data-id="stand" data-name="Подставка под бутыль" data-price="13.2" data-img="i-stand">
-        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
-    </article>
-
-    <article class="good" data-cat="access">
-      <div class="thumb"><svg class="gimg"><use href="#i-holder"/></svg></div>
-      <h3>Держатель для стаканов</h3>
-      <div class="sub">Аксессуары</div>
-      <div class="price"><b>23,00 руб.</b></div>
-      <button class="btn btn-primary btn-sm js-add" data-id="holder" data-name="Держатель для стаканов" data-price="23" data-img="i-holder">
-        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
-    </article>
-
-    <article class="good" data-cat="dishes">
-      <div class="thumb"><svg class="gimg"><use href="#i-cup"/></svg></div>
-      <h3>Стаканы 0,18 л (200 шт)</h3>
-      <div class="sub">Одноразовая посуда</div>
-      <div class="price"><b>19,00 руб.</b></div>
-      <button class="btn btn-primary btn-sm js-add" data-id="cup200" data-name="Стакан 0,18 л (200 шт)" data-price="19" data-img="i-cup">
-        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
-    </article>
-
-    <article class="good" data-cat="dishes">
-      <div class="thumb"><svg class="gimg"><use href="#i-cup"/></svg></div>
-      <h3>Стаканы «Протера» (50 шт)</h3>
-      <div class="sub">Одноразовая посуда</div>
-      <div class="price"><b>5,50 руб.</b></div>
-      <button class="btn btn-primary btn-sm js-add" data-id="cup50" data-name="Стакан «Протера» (50 шт)" data-price="5.5" data-img="i-cup">
-        <svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
-    </article>
+  <div class="goods" id="goodsGrid">
 
     <aside class="promo">
       <h3>Пора пополнить запас воды?</h3>
@@ -716,12 +770,9 @@ body.menu-open .m-menu{transform:none}
 <section class="section" id="bonus" style="padding-top:0">
   <div class="sec-head"><h2>Бонусы и подарки</h2><span class="sec-sub">Постоянным клиентам — больше выгоды</span></div>
   <div class="bonus-grid">
-    <div class="bonus"><span class="feat-ic"><svg class="ic s24"><use href="#i-gift"/></svg></span>
-      <h3>5% бонусами с каждого заказа</h3>
-      <p>Бонусы начисляются на ваш счёт автоматически и отображаются в профиле. Ими можно оплачивать до 100% следующего заказа.</p></div>
     <div class="bonus"><span class="feat-ic"><svg class="ic s24"><use href="#i-heart"/></svg></span>
       <h3>Приведи друга</h3>
-      <p>Друг получает скидку на первый заказ, а вы — бонусные бутыли на свой счёт.</p></div>
+      <p>Друг получает скидку на первый заказ, а вы — скидку на следующий.</p></div>
     <div class="bonus"><span class="feat-ic"><svg class="ic s24"><use href="#i-repeat"/></svg></span>
       <h3>Повторный заказ в 1 клик</h3>
       <p>История заказов сохраняется в разделе «Заказы»: повторяйте прошлый состав корзины одним нажатием.</p></div>
@@ -730,7 +781,7 @@ body.menu-open .m-menu{transform:none}
 
 <!-- ДОСТАВКА -->
 <section class="section" id="delivery" style="padding-top:0">
-  <div class="sec-head"><h2>Доставка</h2><span class="sec-sub">Минская область (Червенский, Пуховичский районы) и Могилёвская область (Осиповичи)</span></div>
+  <div class="sec-head"><h2>Доставка</h2><span class="sec-sub" id="deliveryNote">Минская область (Червенский, Пуховичский районы) и Могилёвская область (Осиповичи)</span></div>
   <div class="steps">
     <div class="step"><div class="step-num">01</div><h3>Оформление заказа</h3>
       <p>Через сайт или по телефону — займёт пару минут. Заказы принимаются предварительно и подтверждаются оператором.</p></div>
@@ -758,9 +809,9 @@ body.menu-open .m-menu{transform:none}
 <section class="section" id="about" style="padding-top:0">
   <div class="about">
     <div class="about-text">
-      <h2>О компании PROTERA</h2>
-      <p>«Живая вода ПРОТЕРА» — природная питьевая вода из уникального подземного источника ледникового происхождения. Без водопровода и фильтров, изменяющих состав: более 50 жизненно необходимых макро- и микроэлементов, оптимальное содержание фтора.</p>
-      <p>Производитель первым в мире внедрил запатентованную ультразвуковую мойку оборотных бутылей — самые чистые бутыли для вашей воды. Вся продукция сертифицирована по международным стандартам.</p>
+      <h2 id="aboutTitle">О компании PROTERA</h2>
+      <p id="aboutP1">«Живая вода ПРОТЕРА» — природная питьевая вода из уникального подземного источника ледникового происхождения. Без водопровода и фильтров, изменяющих состав: более 50 жизненно необходимых макро- и микроэлементов, оптимальное содержание фтора.</p>
+      <p id="aboutP2">Производитель первым в мире внедрил запатентованную ультразвуковую мойку оборотных бутылей — самые чистые бутыли для вашей воды. Вся продукция сертифицирована по международным стандартам.</p>
       <ul class="about-list">
         <li><svg class="ic s16"><use href="#i-check"/></svg>Уникальный природный источник, экологическая защищённость</li>
         <li><svg class="ic s16"><use href="#i-check"/></svg>Запатентованная ультразвуковая мойка каждой бутыли</li>
@@ -797,13 +848,13 @@ body.menu-open .m-menu{transform:none}
   <div class="contacts">
     <div class="c-info">
       <div class="c-row"><span class="feat-ic"><svg class="ic s20"><use href="#i-phone"/></svg></span>
-        <div><b>Телефон</b><a href="tel:+79110117020">+7 (911) 011-70-20</a></div></div>
+        <div><b>Телефон</b><a id="contactPhone" href="tel:+79110117020">+7 (911) 011-70-20</a></div></div>
       <div class="c-row"><span class="feat-ic"><svg class="ic s20"><use href="#i-mail"/></svg></span>
-        <div><b>E-mail</b><a href="mailto:info@aqua-delivery.ru">info@aqua-delivery.ru</a></div></div>
+        <div><b>E-mail</b><a id="contactEmail" href="mailto:info@aqua-delivery.ru">info@aqua-delivery.ru</a></div></div>
       <div class="c-row"><span class="feat-ic"><svg class="ic s20"><use href="#i-pin"/></svg></span>
-        <div><b>Зона доставки</b><span>Минская и Могилёвская области</span></div></div>
+        <div><b>Зона доставки</b><span id="contactArea">Минская и Могилёвская области</span></div></div>
       <div class="c-row"><span class="feat-ic"><svg class="ic s20"><use href="#i-clock"/></svg></span>
-        <div><b>Режим работы</b><span>с 8:00 до 20:00</span></div></div>
+        <div><b>Режим работы</b><span id="contactHours">с 8:00 до 20:00</span></div></div>
     </div>
     <form class="c-form" id="orderForm">
       <h3>Оставить заявку</h3>
@@ -832,12 +883,196 @@ body.menu-open .m-menu{transform:none}
     <a href="#" aria-label="VK"><svg class="ic s18"><use href="#i-vk"/></svg></a>
     <a href="tel:+79110117020" aria-label="Позвонить"><svg class="ic s16"><use href="#i-phone"/></svg></a>
   </div>
-  <div class="copy">© <span id="year"></span> PROTERA. Все права защищены.</div>
+  <div class="copy" id="footerText">© <span id="year"></span> PROTERA. Все права защищены.</div>
 </footer>
 </div><!-- /page -->
 
 <!-- Оверлей и выдвижные панели -->
 <div class="overlay" id="overlay"></div>
+
+<!-- РЕГИСТРАЦИЯ / ВХОД -->
+<div class="auth-modal" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+  <div class="auth-card">
+    <button class="icon-btn auth-x" id="authClose" aria-label="Закрыть"><svg class="ic s20"><use href="#i-x"/></svg></button>
+    <h2 id="authTitle">Вход в аккаунт</h2>
+    <p class="auth-sub" id="authSub">Войдите, чтобы видеть историю заказов и повторять их</p>
+
+    <div class="auth-tabs" id="authTabs">
+      <button type="button" class="active" data-auth-tab="login">Вход</button>
+      <button type="button" data-auth-tab="register">Регистрация</button>
+    </div>
+
+    <form id="loginForm" novalidate>
+      <div class="field" id="fLogin">
+        <label for="lLogin">E-mail или телефон</label>
+        <input id="lLogin" type="text" autocomplete="username" placeholder="you@mail.ru или +375 29 123-45-67">
+        <span class="err">Введите e-mail или телефон</span>
+      </div>
+      <div class="field" id="fPass">
+        <label for="lPass">Пароль</label>
+        <div class="in-wrap">
+          <input id="lPass" type="password" autocomplete="current-password" placeholder="Пароль">
+          <button class="eye" type="button" data-eye="lPass" aria-label="Показать пароль"><svg class="ic s18"><use href="#i-eye"/></svg></button>
+        </div>
+        <span class="err">Введите пароль</span>
+      </div>
+      <div class="auth-row">
+        <label class="chk"><input type="checkbox" id="lRemember" checked><span>Запомнить меня</span></label>
+        <button class="link-btn" type="button" id="forgotBtn">Забыли пароль?</button>
+      </div>
+      <div class="form-msg" id="loginMsg" role="alert"></div>
+      <button class="btn btn-primary btn-block" type="submit">Войти</button>
+      <p class="auth-foot">Нет аккаунта? <button class="link-btn" type="button" data-auth-tab="register">Зарегистрироваться</button></p>
+    </form>
+
+    <form id="regForm" novalidate hidden>
+      <div class="field" id="fName">
+        <label for="rName">Имя</label>
+        <input id="rName" type="text" autocomplete="name" placeholder="Как к вам обращаться">
+        <span class="err">Укажите имя (минимум 2 символа)</span>
+      </div>
+      <div class="field" id="fPhone">
+        <label for="rPhone">Телефон</label>
+        <input id="rPhone" type="tel" autocomplete="tel" placeholder="+375 (29) 123-45-67">
+        <span class="err">Введите телефон в формате +375 (29) 123-45-67</span>
+      </div>
+      <div class="field" id="fEmail">
+        <label for="rEmail">E-mail</label>
+        <input id="rEmail" type="email" autocomplete="email" placeholder="you@mail.ru">
+        <span class="err">Проверьте адрес e-mail</span>
+      </div>
+      <div class="field" id="fRegPass">
+        <label for="rPass">Пароль</label>
+        <div class="in-wrap">
+          <input id="rPass" type="password" autocomplete="new-password" placeholder="Минимум 8 символов">
+          <button class="eye" type="button" data-eye="rPass" aria-label="Показать пароль"><svg class="ic s18"><use href="#i-eye"/></svg></button>
+        </div>
+        <div class="strength" id="strength"><i></i><i></i><i></i><i></i></div>
+        <div class="strength-txt" id="strengthTxt">Минимум 8 символов, буквы и цифры</div>
+        <span class="err">Минимум 8 символов, хотя бы одна буква и цифра</span>
+      </div>
+      <div class="field" id="fRegPass2">
+        <label for="rPass2">Повторите пароль</label>
+        <div class="in-wrap">
+          <input id="rPass2" type="password" autocomplete="new-password" placeholder="Ещё раз">
+          <button class="eye" type="button" data-eye="rPass2" aria-label="Показать пароль"><svg class="ic s18"><use href="#i-eye"/></svg></button>
+        </div>
+        <span class="err">Пароли не совпадают</span>
+      </div>
+      <label class="chk"><input type="checkbox" id="rAgree"><span>Согласен с политикой обработки персональных данных</span></label>
+      <div class="form-msg" id="regMsg" role="alert"></div>
+      <button class="btn btn-primary btn-block" type="submit">Зарегистрироваться</button>
+      <p class="auth-foot">Уже есть аккаунт? <button class="link-btn" type="button" data-auth-tab="login">Войти</button></p>
+      <p class="auth-legal">После регистрации вам доступны история заказов, сохранённый адрес и повторный заказ в 1 клик.</p>
+    </form>
+
+    <!-- проверьте почту -->
+    <div id="regDone" hidden>
+      <div class="done-box">
+        <span class="done-ic"><svg class="ic s28"><use href="#i-mail"/></svg></span>
+        <b>Осталось подтвердить e-mail</b>
+        <p>Мы отправили письмо на <span id="doneEmail">—</span>. Откройте его и нажмите «Подтвердить e-mail».</p>
+        <p class="done-note" id="doneMailNote"></p>
+      </div>
+      <div class="form-msg" id="doneMsg" role="alert"></div>
+      <button class="btn btn-primary btn-block" type="button" id="resendDone">Отправить письмо ещё раз</button>
+      <button class="link-btn auth-back" type="button" data-auth-view="login">Вернуться ко входу</button>
+    </div>
+
+    <!-- восстановление пароля -->
+    <form id="forgotForm" novalidate hidden>
+      <p class="auth-hint">Укажите e-mail, на который зарегистрирован аккаунт — пришлём ссылку для сброса пароля.</p>
+      <div class="field" id="fForgotEmail">
+        <label for="fpEmail">E-mail</label>
+        <input id="fpEmail" type="email" autocomplete="email" placeholder="you@mail.ru">
+        <span class="err">Проверьте адрес e-mail</span>
+      </div>
+      <div class="form-msg" id="forgotMsg" role="alert"></div>
+      <button class="btn btn-primary btn-block" type="submit">Отправить ссылку</button>
+      <button class="link-btn auth-back" type="button" data-auth-view="login">Вернуться ко входу</button>
+    </form>
+
+    <!-- новый пароль по ссылке -->
+    <form id="resetForm" novalidate hidden>
+      <p class="auth-hint">Новый пароль для <b id="resetEmail">—</b></p>
+      <div class="field" id="fResetPass">
+        <label for="rsPass">Новый пароль</label>
+        <div class="in-wrap">
+          <input id="rsPass" type="password" autocomplete="new-password" placeholder="Минимум 8 символов">
+          <button class="eye" type="button" data-eye="rsPass" aria-label="Показать пароль"><svg class="ic s18"><use href="#i-eye"/></svg></button>
+        </div>
+        <span class="err">Минимум 8 символов, хотя бы одна буква и цифра</span>
+      </div>
+      <div class="field" id="fResetPass2">
+        <label for="rsPass2">Повторите пароль</label>
+        <div class="in-wrap">
+          <input id="rsPass2" type="password" autocomplete="new-password" placeholder="Ещё раз">
+          <button class="eye" type="button" data-eye="rsPass2" aria-label="Показать пароль"><svg class="ic s18"><use href="#i-eye"/></svg></button>
+        </div>
+        <span class="err">Пароли не совпадают</span>
+      </div>
+      <div class="form-msg" id="resetMsg" role="alert"></div>
+      <button class="btn btn-primary btn-block" type="submit">Сохранить новый пароль</button>
+      <button class="link-btn auth-back" type="button" data-auth-view="login">Вернуться ко входу</button>
+    </form>
+  </div>
+</div>
+
+<!-- КАРТОЧКА ТОВАРА -->
+<div class="modal" id="productModal" role="dialog" aria-modal="true" aria-labelledby="pmName">
+  <div class="pm-card">
+    <button class="icon-btn auth-x" id="pmClose" aria-label="Закрыть"><svg class="ic s20"><use href="#i-x"/></svg></button>
+    <div class="pm-media" id="pmMedia"></div>
+    <div class="pm-body">
+      <span class="pm-badge" id="pmBadge" hidden></span>
+      <h2 id="pmName"></h2>
+      <div class="pm-sub" id="pmSub"></div>
+      <div class="pm-price" id="pmPrice"></div>
+      <div class="pm-desc" id="pmDesc"></div>
+      <div class="pm-actions">
+        <button class="btn btn-primary" id="pmAdd" type="button"><svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>
+        <button class="btn btn-ghost" id="pmCloseBtn" type="button">Закрыть</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ОФОРМЛЕНИЕ ЗАКАЗА -->
+<div class="modal" id="checkoutModal" role="dialog" aria-modal="true" aria-labelledby="coTitle">
+  <div class="co-card">
+    <button class="icon-btn auth-x" id="coClose" aria-label="Закрыть"><svg class="ic s20"><use href="#i-x"/></svg></button>
+    <h2 id="coTitle">Оформление заказа</h2>
+    <p class="auth-sub">Выберите адрес, интервал доставки и способ оплаты</p>
+    <form id="checkoutForm" novalidate>
+      <div class="co-sec">
+        <h4>Адрес доставки</h4>
+        <div class="addr-pick" id="coAddresses"></div>
+        <button type="button" class="link-btn" id="coAddAddr" style="margin-top:9px">+ Новый адрес</button>
+      </div>
+      <div class="co-sec">
+        <h4>Интервал доставки</h4>
+        <div class="field" id="fCoInterval">
+          <select id="coInterval"></select>
+          <span class="err">Выберите интервал</span>
+        </div>
+        <div class="co-hint" id="coZoneNote"></div>
+      </div>
+      <div class="co-sec">
+        <h4>Способ оплаты</h4>
+        <div class="addr-pick" id="coPayments"></div>
+      </div>
+      <div class="co-sec">
+        <div class="field">
+          <label for="coComment">Комментарий к заказу</label>
+          <input id="coComment" maxlength="500" placeholder="Подъезд, этаж, пожелания курьеру">
+        </div>
+      </div>
+      <div class="form-msg" id="coMsg" role="alert"></div>
+      <div class="co-total"><span>Итого</span><b id="coTotal">0,00 руб.</b></div>
+      <button class="btn btn-primary btn-block" type="submit">Подтвердить заказ</button>
+    </form>
+  </div>
+</div>
 
 <aside class="drawer" id="cart" aria-label="Корзина">
   <div class="dr-head"><h3>Корзина</h3>
@@ -855,28 +1090,129 @@ body.menu-open .m-menu{transform:none}
   <div class="dr-body" id="ordersList"></div>
 </aside>
 
-<aside class="drawer" id="profile" aria-label="Профиль">
-  <div class="dr-head"><h3>Профиль</h3>
+<aside class="drawer" id="profile" aria-label="Личный кабинет">
+  <div class="dr-head"><h3>Личный кабинет</h3>
     <button class="icon-btn" data-close aria-label="Закрыть"><svg class="ic s20"><use href="#i-x"/></svg></button></div>
   <div class="dr-body">
-    <div class="bonus-card">
-      <span>Бонусный счёт</span>
-      <b id="bonusPoints">0</b>
-      <span>бонусных рублей · 5% с каждого заказа</span>
+    <!-- гость -->
+    <div class="guest-card" id="guestBlock">
+      <span class="feat-ic"><svg class="ic s24"><use href="#i-user"/></svg></span>
+      <b>Вы не вошли в аккаунт</b>
+      <p>Зарегистрируйтесь, чтобы сохранять адрес доставки и повторять заказы в один клик.</p>
+      <button class="btn btn-primary btn-block" id="guestReg" type="button">Создать аккаунт</button>
+      <button class="btn btn-ghost btn-block" id="guestLogin" type="button">У меня уже есть аккаунт</button>
     </div>
-    <form class="p-form" id="profileForm">
-      <div><label for="pName">Имя</label><input id="pName" type="text" placeholder="Ваше имя"></div>
-      <div><label for="pPhone">Телефон</label><input id="pPhone" type="tel" placeholder="+375 (__) ___-__-__"></div>
-      <div><label for="pCity">Город</label>
-        <select id="pCity">
-          <option>Минск</option><option>Марьина Горка</option><option>Дружный</option>
-          <option>Свислочь</option><option>Руденск</option><option>Червень</option><option>Осиповичи</option>
-        </select>
+
+    <!-- авторизованный клиент -->
+    <div id="userBlock" hidden>
+      <div class="acct-head">
+        <span class="acct-av-lg" id="userInitials">П</span>
+        <div><b id="userName">—</b><span id="userEmail">—</span></div>
       </div>
-      <div><label for="pAddress">Адрес доставки</label><input id="pAddress" type="text" placeholder="Улица, дом, квартира"></div>
-      <button class="btn btn-primary btn-block" type="submit">Сохранить профиль</button>
-      <span class="note">Данные сохраняются только на этом устройстве.</span>
-    </form>
+
+      <div class="acct-stats">
+        <div><b id="statOrders">0</b><span>заказов</span></div>
+        <div><b id="statSpent">0,00 руб.</b><span>общая сумма</span></div>
+      </div>
+
+      <form class="p-form" id="profileForm" novalidate>
+        <div class="field">
+          <label for="pName">Имя</label>
+          <input id="pName" type="text" autocomplete="name" placeholder="Ваше имя">
+          <span class="err">Укажите имя (минимум 2 символа)</span>
+        </div>
+        <div class="field">
+          <label for="pPhone">Телефон</label>
+          <input id="pPhone" type="tel" autocomplete="tel" placeholder="+375 (29) 123-45-67">
+          <span class="err">Введите телефон в формате +375 (29) 123-45-67</span>
+        </div>
+        <div class="form-msg" id="profileMsg" role="alert"></div>
+        <button class="btn btn-primary btn-block" type="submit">Сохранить изменения</button>
+      </form>
+
+      <div class="divider"></div>
+
+      <div class="addr-block">
+        <div class="addr-head">
+          <b>Мои адреса</b>
+          <button class="link-btn" type="button" id="addrAdd">+ Добавить адрес</button>
+        </div>
+        <div id="addressList" class="addr-list"></div>
+        <form id="addressForm" class="addr-form" hidden novalidate>
+          <input type="hidden" id="afId" value="">
+          <div class="field">
+            <label for="afLabel">Название</label>
+            <input id="afLabel" maxlength="60" placeholder="Дом, Офис, Дача">
+          </div>
+          <div class="field">
+            <label for="afCity">Город</label>
+            <select id="afCity"></select>
+            <span class="err">Выберите город доставки</span>
+          </div>
+          <div class="field">
+            <label for="afStreet">Улица, дом, квартира</label>
+            <input id="afStreet" maxlength="200" placeholder="ул. Ленинская, 5">
+            <span class="err">Укажите улицу и дом</span>
+          </div>
+          <div class="addr-grid">
+            <div class="field"><label for="afApt">Кв.</label><input id="afApt" maxlength="20" inputmode="numeric"></div>
+            <div class="field"><label for="afEntrance">Подъезд</label><input id="afEntrance" maxlength="20"></div>
+            <div class="field"><label for="afFloor">Этаж</label><input id="afFloor" maxlength="20" inputmode="numeric"></div>
+          </div>
+          <div class="field">
+            <label for="afComment">Комментарий</label>
+            <input id="afComment" maxlength="255" placeholder="Код домофона, ориентир">
+          </div>
+          <label class="chk"><input type="checkbox" id="afDefault"><span>Сделать основным адресом</span></label>
+          <div class="form-msg" id="afMsg" role="alert"></div>
+          <div class="addr-form-actions">
+            <button class="btn btn-primary" type="submit">Сохранить адрес</button>
+            <button class="btn btn-ghost" type="button" id="afCancel">Отмена</button>
+          </div>
+        </form>
+      </div>
+
+      <div class="divider"></div>
+
+      <details class="pwd-block">
+        <summary>Сменить пароль</summary>
+        <form class="p-form" id="pwdForm" novalidate>
+          <div class="field">
+            <label for="pwdOld">Текущий пароль</label>
+            <input id="pwdOld" type="password" autocomplete="current-password">
+            <span class="err">Введите текущий пароль</span>
+          </div>
+          <div class="field">
+            <label for="pwdNew">Новый пароль</label>
+            <input id="pwdNew" type="password" autocomplete="new-password">
+            <span class="err">Минимум 8 символов, буквы и цифры</span>
+          </div>
+          <div class="field">
+            <label for="pwdNew2">Повторите пароль</label>
+            <input id="pwdNew2" type="password" autocomplete="new-password">
+            <span class="err">Пароли не совпадают</span>
+          </div>
+          <div class="form-msg" id="pwdMsg" role="alert"></div>
+          <button class="btn btn-primary btn-block" type="submit">Обновить пароль</button>
+        </form>
+      </details>
+
+      <button class="btn btn-ghost btn-block" id="logoutBtn" type="button">Выйти из аккаунта</button>
+
+      <details class="pwd-block" style="margin-top:10px">
+        <summary>Удалить аккаунт</summary>
+        <form class="p-form" id="deleteForm" novalidate>
+          <div class="field">
+            <label for="delPass">Пароль для подтверждения</label>
+            <input id="delPass" type="password" autocomplete="current-password">
+            <span class="err">Неверный пароль</span>
+          </div>
+          <button class="btn btn-danger btn-block" id="deleteBtn" type="button">Удалить аккаунт навсегда</button>
+          <p class="del-hint">История заказов и данные профиля будут удалены без возможности восстановления.</p>
+        </form>
+      </details>
+      <div class="form-msg" id="delMsg" role="alert"></div>
+    </div>
   </div>
 </aside>
 
@@ -927,7 +1263,7 @@ document.addEventListener('click', e => { if (!city.contains(e.target)) city.cla
 const slides = [
   {t:'Вода, которую удобно заказывать', l:'Свежая питьевая вода для дома и офиса. Доставим в удобное время.'},
   {t:'18,9 л — от 11 рублей', l:'Природная артезианская вода из уникального источника. При заказе от 2-х бутылей — 11 руб. за бутыль.'},
-  {t:'Бонусы с каждого заказа', l:'5% от суммы заказа возвращается на бонусный счёт — оплачивайте бонусами до 100% следующего заказа.'}
+  {t:'Повторный заказ в 1 клик', l:'История заказов сохраняется в личном кабинете — повторяйте прошлый состав корзины одним нажатием.'}
 ];
 let si = 0;
 const dots = $$('#dots button');
@@ -944,53 +1280,571 @@ function go(i){
 dots.forEach((d, k) => d.addEventListener('click', () => go(k)));
 setInterval(() => go(si + 1), 7000);
 
-/* Фильтр категорий */
-const catBtns = $$('.cat-btn');
-function applyCat(f){
-  catBtns.forEach(b => b.classList.toggle('active', b.dataset.filter === f));
-  $$('.good').forEach(c => c.classList.toggle('hidden', f !== 'all' && c.dataset.cat !== f));
-  $('.promo').classList.toggle('hidden', f !== 'all');
+/* Фильтр категорий (рендерится из админки) */
+$('#allCatalog').addEventListener('click', () => { currentFilter = 'all'; renderFilters(); renderCatalog(); });
+
+/* ==================== АККАУНТ КЛИЕНТА (PHP API) ==================== */
+const API_BASE = 'api/';
+const DB_ORDERS = 'protera_orders_v3';
+const CITIES = ['Марьина Горка', 'Дружный', 'Свислочь', 'Руденск', 'Червень', 'Осиповичи'];
+
+let meUser = null;      // пользователь с сервера
+let csrfToken = '';     // CSRF-токен текущей сессии
+let resetToken = '';    // токен из ссылки сброса пароля
+let pendingEmail = '';  // адрес, на который отправляется письмо
+
+class ApiError extends Error {
+  constructor(code, message) { super(message); this.name = 'ApiError'; this.code = code; }
 }
-catBtns.forEach(b => b.addEventListener('click', () => applyCat(b.dataset.filter)));
-$('#allCatalog').addEventListener('click', () => applyCat('all'));
 
-/* Заказы и профиль (localStorage) */
-let orders  = LS.get('protera_orders', []);
-let profile = LS.get('protera_profile', {name:'', phone:'', city:'Минск', address:''});
-const bonuses = () => orders.reduce((s, o) => s + Math.floor(o.total * 0.05), 0);
+async function api(path, options = {}) {
+  const method = options.method || 'GET';
+  const headers = { 'Accept': 'application/json' };
+  if (options.body !== undefined) headers['Content-Type'] = 'application/json';
+  if (method !== 'GET') {
+    if (!csrfToken) { try { await loadMe(); } catch (e) {} }
+    if (csrfToken) headers['X-CSRF-Token'] = csrfToken;
+  }
+  let res;
+  try {
+    res = await fetch(API_BASE + path, {
+      method,
+      headers,
+      credentials: 'same-origin',
+      body: options.body !== undefined ? JSON.stringify(options.body) : undefined
+    });
+  } catch (e) {
+    throw new ApiError('network', 'Сервер недоступен. Проверьте подключение и обновите страницу.');
+  }
+  const raw = await res.text();
+  let data = null;
+  try { data = raw ? JSON.parse(raw) : null; } catch (e) {
+    throw new ApiError('server', 'Сервер вернул неожиданный ответ. Попробуйте позже.');
+  }
+  if (!res.ok || !data || data.ok === false) {
+    const code = (data && data.code) || 'error';
+    if (code === 'csrf') csrfToken = '';
+    throw new ApiError(code, (data && data.message) || 'Не удалось выполнить запрос.');
+  }
+  return data;
+}
 
-function renderOrders(){
-  const box = $('#ordersList');
-  if (!orders.length){
+function user() { return meUser; }
+const initials = n => (n || '?').trim().split(/\s+/).slice(0, 2).map(w => w[0]).join('').toUpperCase();
+
+/* --- локальные помощники валидации --- */
+const digitsOf = v => String(v || '').replace(/\D/g, '');
+function normalizePhone(v) {
+  let d = digitsOf(v);
+  if (!d) return null;
+  if (d.length === 11 && d.startsWith('80')) d = '375' + d.slice(2);
+  if (d.length === 9) d = '375' + d;
+  if (d.length !== 12 || !d.startsWith('375')) return null;
+  return '+' + d;
+}
+function prettyPhone(v) {
+  const d = digitsOf(v);
+  if (d.length !== 12) return v || '';
+  const n = d.slice(3);
+  return `+375 (${n.slice(0, 2)}) ${n.slice(2, 5)}-${n.slice(5, 7)}-${n.slice(7, 9)}`;
+}
+const emailValid = v => /^[^\s@]+@[^\s@]+\.[a-zа-яё]{2,}$/i.test(String(v || '').trim());
+const passValid = p => p.length >= 8 && /[A-Za-zА-Яа-яЁё]/.test(p) && /\d/.test(p);
+function passScore(p) {
+  let s = 0;
+  if (p.length >= 8) s++;
+  if (p.length >= 12) s++;
+  if (/[a-zа-яё]/.test(p) && /[A-ZА-ЯЁ]/.test(p)) s++;
+  if (/\d/.test(p)) s++;
+  if (/[^\w\s]/.test(p)) s++;
+  return Math.min(s, 4);
+}
+
+/* --- заказы приходят с сервера --- */
+let myOrders = [];
+
+async function loadOrders() {
+  if (!user()) { myOrders = []; renderOrders(); return; }
+  try {
+    const data = await api('orders.php');
+    myOrders = data.orders || [];
+  } catch (e) {
+    myOrders = [];
+  }
+  renderOrders();
+  renderAccount();
+}
+
+/* --- сообщения и подсветка полей --- */
+function showMsg(el, text, type) {
+  if (!el) return;
+  el.textContent = text;
+  el.className = 'form-msg show ' + (type || 'err');
+}
+function hideMsg(el) { if (el) { el.className = 'form-msg'; el.textContent = ''; } }
+function markField(el, ok) {
+  if (!el) return ok;
+  const field = el.closest('.field') || el;
+  field.classList.toggle('bad', !ok);
+  return ok;
+}
+
+/* --- отрисовка --- */
+function renderAccount() {
+  const u = user(), av = $('#acctAv'), nm = $('#acctName');
+  if (u) {
+    if (av) av.textContent = initials(u.name);
+    if (nm) nm.textContent = (u.name || '').split(' ')[0];
+    $('#guestBlock').hidden = true;
+    $('#userBlock').hidden = false;
+    $('#userInitials').textContent = initials(u.name);
+    $('#userName').textContent = u.name || 'Клиент';
+    $('#userEmail').textContent = prettyPhone(u.phone) + ' · ' + u.email;
+    $('#statOrders').textContent = myOrders.length;
+    $('#statSpent').textContent = fmt(myOrders.filter(o => o.status !== 'Отменён').reduce((s, o) => s + o.total, 0));
+  } else {
+    if (av) av.innerHTML = '<svg class="ic s16"><use href="#i-user"/></svg>';
+    if (nm) nm.textContent = 'Войти';
+    $('#guestBlock').hidden = false;
+    $('#userBlock').hidden = true;
+  }
+}
+
+function fillProfile() {
+  const u = user(); if (!u) return;
+  $('#pName').value = u.name || '';
+  $('#pPhone').value = prettyPhone(u.phone);
+  hideMsg($('#profileMsg'));
+  $$('#profileForm .field').forEach(f => f.classList.remove('bad'));
+}
+
+function renderOrders() {
+  const box = $('#ordersList'), u = user();
+  if (!u) {
+    box.innerHTML = '<div class="empty"><svg class="ic"><use href="#i-doc"/></svg>История заказов доступна после входа в аккаунт.'
+      + '<br><button class="btn btn-primary btn-sm" data-auth-view="login" style="margin-top:14px">Войти в аккаунт</button></div>';
+    return;
+  }
+  if (!myOrders.length) {
     box.innerHTML = '<div class="empty"><svg class="ic"><use href="#i-doc"/></svg>Заказов пока нет.<br>Оформите первый заказ в каталоге 💧</div>';
     return;
   }
-  box.innerHTML = orders.map(o => `
+  box.innerHTML = myOrders.map(o => `
     <div class="order">
       <div class="order-head">
-        <div><div class="order-num">Заказ ${o.num}</div><div class="order-date">${o.date}</div></div>
-        <span class="status ${o.status === 'В обработке' ? 'new' : ''}">${o.status}</span>
+        <div><div class="order-num">Заказ ${o.number}</div><div class="order-date">${o.created_at}</div></div>
+        <span class="status ${o.status === 'Новый' ? 'new' : ''}">${o.status}</span>
       </div>
       <div class="order-items">${o.items.map(i => i.name + ' × ' + i.qty).join('<br>')}</div>
+      <div class="order-meta">${o.city}, ${o.address_text}<br>${o.interval} · ${o.payment_title}</div>
       <div class="order-total">Итого: ${fmt(o.total)}</div>
     </div>`).join('');
 }
-function fillProfile(){
-  $('#pName').value = profile.name || '';
-  $('#pPhone').value = profile.phone || '';
-  $('#pCity').value = profile.city || 'Минск';
-  $('#pAddress').value = profile.address || '';
-  $('#bonusPoints').textContent = bonuses();
+
+/* --- экраны модального окна --- */
+const AUTH_VIEWS = {
+  login:    { title: 'Вход в аккаунт',        sub: 'Войдите, чтобы видеть историю заказов и повторять их' },
+  register: { title: 'Регистрация',           sub: 'Создайте аккаунт — история заказов и адрес сохранятся' },
+  done:     { title: 'Проверьте почту',       sub: 'Аккаунт создан, остался один шаг' },
+  forgot:   { title: 'Восстановление пароля', sub: 'Пришлём ссылку для сброса на ваш e-mail' },
+  reset:    { title: 'Новый пароль',          sub: 'Придумайте новый пароль для аккаунта' }
+};
+
+function setAuthView(view) {
+  if (!AUTH_VIEWS[view]) view = 'login';
+  $('#loginForm').hidden  = view !== 'login';
+  $('#regForm').hidden    = view !== 'register';
+  $('#regDone').hidden    = view !== 'done';
+  $('#forgotForm').hidden = view !== 'forgot';
+  $('#resetForm').hidden  = view !== 'reset';
+  $('#authTitle').textContent = AUTH_VIEWS[view].title;
+  $('#authSub').textContent = AUTH_VIEWS[view].sub;
+  const withTabs = view === 'login' || view === 'register';
+  $('#authTabs').hidden = !withTabs;
+  $('#authTabs').querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.authTab === view));
+  $$('.auth-card .form-msg').forEach(hideMsg);
+  setTimeout(() => {
+    if (!document.body.classList.contains('auth-open')) return;
+    const focus = { login: '#lLogin', register: '#rName', forgot: '#fpEmail', reset: '#rsPass', done: null }[view];
+    const el = focus && $(focus);
+    if (el) el.focus();
+  }, 60);
 }
-$('#profileForm').addEventListener('submit', e => {
-  e.preventDefault();
-  profile = { name: $('#pName').value.trim(), phone: $('#pPhone').value.trim(), city: $('#pCity').value, address: $('#pAddress').value.trim() };
-  LS.set('protera_profile', profile);
-  toast('Профиль сохранён ✔');
+
+function openAuth(view) {
+  if (user() && (view === 'login' || view === 'register' || !view)) return openProfile();
+  document.body.classList.add('auth-open');
+  setAuthView(view || 'login');
+}
+function closeAuth() {
+  document.body.classList.remove('auth-open');
+  $('#lPass').value = '';
+  $$('.auth-card .form-msg').forEach(hideMsg);
+}
+function openProfile() {
+  if (!user()) return openAuth('login');
+  renderAccount(); fillProfile(); renderOrders(); loadAddresses();
+  openPanel('profile-open');
+}
+
+/* --- загрузка сессии --- */
+async function loadMe() {
+  const data = await api('me.php');
+  meUser = data.user || null;
+  csrfToken = data.csrf || '';
+  renderAccount();
+  renderOrders();
+  if (meUser) { loadAddresses(); loadOrders(); } else { myAddresses = []; renderAddressBook(); myOrders = []; }
+}
+
+/* --- переходы между экранами и обработчики --- */
+$('#authClose').addEventListener('click', closeAuth);
+$('#authModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeAuth(); });
+$$('[data-auth-tab]').forEach(b => b.addEventListener('click', () => setAuthView(b.dataset.authTab)));
+$$('[data-auth-view]').forEach(b => b.addEventListener('click', () => setAuthView(b.dataset.authView)));
+$('#acctBtn').addEventListener('click', () => { user() ? openProfile() : openAuth('login'); });
+$('#guestReg').addEventListener('click', () => { closeAll(); openAuth('register'); });
+$('#guestLogin').addEventListener('click', () => { closeAll(); openAuth('login'); });
+$('#ordersList').addEventListener('click', e => {
+  const b = e.target.closest('[data-auth-view]');
+  if (b) { closeAll(); openAuth(b.dataset.authView); }
+});
+$('#forgotBtn').addEventListener('click', () => { $('#fpEmail').value = $('#lLogin').value.trim(); setAuthView('forgot'); });
+
+/* телефон с маской и переключатели видимости пароля */
+function attachPhoneMask(input) {
+  input.addEventListener('input', () => {
+    let d = digitsOf(input.value);
+    if (d.length === 11 && d.startsWith('80')) d = '375' + d.slice(2);
+    if (d.startsWith('375')) d = d.slice(3);
+    d = d.slice(0, 9);
+    let out = '+375';
+    if (d.length) out += ' (' + d.slice(0, 2);
+    if (d.length >= 2) out += ')';
+    if (d.length > 2) out += ' ' + d.slice(2, 5);
+    if (d.length > 5) out += '-' + d.slice(5, 7);
+    if (d.length > 7) out += '-' + d.slice(7, 9);
+    input.value = out;
+  });
+}
+attachPhoneMask($('#rPhone'));
+attachPhoneMask($('#pPhone'));
+
+$$('[data-eye]').forEach(btn => btn.addEventListener('click', () => {
+  const inp = document.getElementById(btn.dataset.eye);
+  if (!inp) return;
+  const show = inp.type === 'password';
+  inp.type = show ? 'text' : 'password';
+  btn.innerHTML = '<svg class="ic s18"><use href="#' + (show ? 'i-eye-off' : 'i-eye') + '"/></svg>';
+  btn.setAttribute('aria-label', show ? 'Скрыть пароль' : 'Показать пароль');
+}));
+
+$('#rPass').addEventListener('input', e => {
+  const p = e.target.value, s = passScore(p);
+  $('#strength').className = 'strength' + (p ? ' s' + s : '');
+  const labels = ['Слишком простой', 'Простой пароль', 'Средняя надёжность', 'Надёжный пароль', 'Очень надёжный пароль'];
+  $('#strengthTxt').textContent = p ? labels[s] : 'Минимум 8 символов, буквы и цифры';
 });
 
+/* --- регистрация --- */
+$('#regForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const name  = $('#rName').value.trim();
+  const phone = normalizePhone($('#rPhone').value);
+  const email = $('#rEmail').value.trim().toLowerCase();
+  const p1 = $('#rPass').value, p2 = $('#rPass2').value;
+
+  const okName  = markField($('#rName'), name.length >= 2);
+  const okPhone = markField($('#rPhone'), !!phone);
+  const okEmail = markField($('#rEmail'), emailValid(email));
+  const okPass  = markField($('#rPass'), passValid(p1));
+  const okPass2 = markField($('#rPass2'), p1 === p2 && !!p2);
+  hideMsg($('#regMsg'));
+
+  if (!okName) return showMsg($('#regMsg'), 'Укажите имя — минимум 2 символа', 'err');
+  if (!okPhone) return showMsg($('#regMsg'), 'Введите телефон в формате +375 (29) 123-45-67', 'err');
+  if (!okEmail) return showMsg($('#regMsg'), 'Проверьте адрес e-mail', 'err');
+  if (!okPass) return showMsg($('#regMsg'), 'Пароль: минимум 8 символов, хотя бы одна буква и цифра', 'err');
+  if (!okPass2) return showMsg($('#regMsg'), 'Пароли не совпадают', 'err');
+  if (!$('#rAgree').checked) return showMsg($('#regMsg'), 'Нужно согласие на обработку персональных данных', 'err');
+
+  const btn = e.target.querySelector('button[type="submit"]');
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Создаём аккаунт…';
+  try {
+    const data = await api('register.php', {
+      method: 'POST',
+      body: { name, phone, email, password: p1, agree: true }
+    });
+    pendingEmail = email;
+    $('#doneEmail').textContent = email;
+    $('#doneMailNote').textContent = data.mail_sent
+      ? 'Письмо обычно приходит за минуту. Если его нет — проверьте папку «Спам».'
+      : 'Письмо отправить не удалось. Нажмите «Отправить письмо ещё раз» или напишите нам.';
+    $('#regForm').reset();
+    $('#strength').className = 'strength';
+    $('#strengthTxt').textContent = 'Минимум 8 символов, буквы и цифры';
+    $$('#regForm .field').forEach(f => f.classList.remove('bad'));
+    setAuthView('done');
+    toast('Аккаунт создан. Подтвердите e-mail.');
+  } catch (err) {
+    if (err.code === 'email_taken') {
+      markField($('#rEmail'), false);
+    }
+    if (err.code === 'phone_taken') {
+      markField($('#rPhone'), false);
+    }
+    showMsg($('#regMsg'), err.message, 'err');
+  } finally {
+    btn.disabled = false; btn.textContent = label;
+  }
+});
+
+/* --- вход --- */
+$('#loginForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const login = $('#lLogin').value.trim();
+  const pass  = $('#lPass').value;
+  const okL = markField($('#lLogin'), login.length > 2);
+  const okP = markField($('#lPass'), !!pass);
+  hideMsg($('#loginMsg'));
+  if (!(okL && okP)) return showMsg($('#loginMsg'), 'Введите e-mail/телефон и пароль', 'err');
+
+  const btn = e.target.querySelector('button[type="submit"]');
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Проверяем…';
+  try {
+    const data = await api('login.php', {
+      method: 'POST',
+      body: { login, password: pass, remember: $('#lRemember').checked }
+    });
+    meUser = data.user;
+    csrfToken = data.csrf || csrfToken;
+    $('#loginForm').reset();
+    $$('#loginForm .field').forEach(f => f.classList.remove('bad'));
+    closeAuth();
+    renderAccount(); renderOrders();
+    loadAddresses(); loadOrders();
+    toast('С возвращением, ' + (meUser.name || '').split(' ')[0] + '!');
+    openProfile();
+  } catch (err) {
+    if (err.code === 'email_not_verified') {
+      pendingEmail = login;
+      $('#doneEmail').textContent = login;
+      $('#doneMailNote').textContent = 'Аккаунт ещё не подтверждён. Если письмо не пришло — отправьте его повторно.';
+      setAuthView('done');
+      toast('Подтвердите e-mail, чтобы войти');
+    } else if (err.code === 'csrf' || err.code === 'network') {
+      showMsg($('#loginMsg'), err.message, 'err');
+    } else {
+      showMsg($('#loginMsg'), err.message, 'err');
+    }
+  } finally {
+    btn.disabled = false; btn.textContent = label;
+  }
+});
+
+/* --- повторная отправка письма --- */
+$('#resendDone').addEventListener('click', async e => {
+  const btn = e.currentTarget;
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Отправляем…';
+  hideMsg($('#doneMsg'));
+  try {
+    const data = await api('resend.php', { method: 'POST', body: { email: pendingEmail } });
+    showMsg($('#doneMsg'), data.message, 'ok');
+  } catch (err) {
+    showMsg($('#doneMsg'), err.message, 'err');
+  } finally {
+    btn.disabled = false; btn.textContent = label;
+  }
+});
+
+/* --- забыли пароль --- */
+$('#forgotForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const email = $('#fpEmail').value.trim().toLowerCase();
+  hideMsg($('#forgotMsg'));
+  if (!markField($('#fpEmail'), emailValid(email))) {
+    return showMsg($('#forgotMsg'), 'Проверьте адрес e-mail', 'err');
+  }
+  const btn = e.target.querySelector('button[type="submit"]');
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Отправляем…';
+  try {
+    const data = await api('forgot.php', { method: 'POST', body: { email } });
+    showMsg($('#forgotMsg'), data.message, 'ok');
+  } catch (err) {
+    showMsg($('#forgotMsg'), err.message, 'err');
+  } finally {
+    btn.disabled = false; btn.textContent = label;
+  }
+});
+
+/* --- сброс по ссылке --- */
+async function startReset(token) {
+  resetToken = token;
+  try {
+    const data = await api('reset_check.php?token=' + encodeURIComponent(token));
+    $('#resetEmail').textContent = data.email;
+    document.body.classList.add('auth-open');
+    setAuthView('reset');
+  } catch (err) {
+    document.body.classList.add('auth-open');
+    setAuthView('login');
+    showMsg($('#loginMsg'), 'Ссылка для сброса недействительна или истекла. Запросите новую.', 'err');
+    history.replaceState({}, '', location.pathname);
+  }
+}
+
+$('#resetForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const p1 = $('#rsPass').value, p2 = $('#rsPass2').value;
+  const ok1 = markField($('#rsPass'), passValid(p1));
+  const ok2 = markField($('#rsPass2'), p1 === p2 && !!p2);
+  hideMsg($('#resetMsg'));
+  if (!ok1) return showMsg($('#resetMsg'), 'Минимум 8 символов, хотя бы одна буква и цифра', 'err');
+  if (!ok2) return showMsg($('#resetMsg'), 'Пароли не совпадают', 'err');
+
+  const btn = e.target.querySelector('button[type="submit"]');
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Сохраняем…';
+  try {
+    const data = await api('reset.php', { method: 'POST', body: { token: resetToken, password: p1 } });
+    $('#resetForm').reset();
+    $$('#resetForm .field').forEach(f => f.classList.remove('bad'));
+    resetToken = '';
+    history.replaceState({}, '', location.pathname);
+    setAuthView('login');
+    $('#lLogin').value = data.email || '';
+    showMsg($('#loginMsg'), data.message, 'ok');
+    toast('Пароль изменён');
+  } catch (err) {
+    showMsg($('#resetMsg'), err.message, 'err');
+  } finally {
+    btn.disabled = false; btn.textContent = label;
+  }
+});
+
+/* --- сохранение профиля --- */
+$('#profileForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const u = user(); if (!u) return openAuth('login');
+  const name = $('#pName').value.trim();
+  const phone = normalizePhone($('#pPhone').value);
+
+  const okName  = markField($('#pName'), name.length >= 2);
+  const okPhone = markField($('#pPhone'), !!phone);
+  hideMsg($('#profileMsg'));
+  if (!okName) return showMsg($('#profileMsg'), 'Укажите имя', 'err');
+  if (!okPhone) return showMsg($('#profileMsg'), 'Введите телефон в формате +375 (29) 123-45-67', 'err');
+
+  const btn = e.target.querySelector('button[type="submit"]');
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Сохраняем…';
+  try {
+    const data = await api('profile.php', { method: 'POST', body: { name, phone } });
+    meUser = data.user;
+    renderAccount();
+    showMsg($('#profileMsg'), data.message, 'ok');
+    toast('Профиль обновлён');
+  } catch (err) {
+    if (err.code === 'phone_taken') markField($('#pPhone'), false);
+    showMsg($('#profileMsg'), err.message, 'err');
+  } finally {
+    btn.disabled = false; btn.textContent = label;
+  }
+});
+
+/* --- смена пароля --- */
+$('#pwdForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  if (!user()) return;
+  const current = $('#pwdOld').value, n1 = $('#pwdNew').value, n2 = $('#pwdNew2').value;
+  const okOld = markField($('#pwdOld'), !!current);
+  const okNew = markField($('#pwdNew'), passValid(n1));
+  const okRep = markField($('#pwdNew2'), n1 === n2 && !!n2);
+  hideMsg($('#pwdMsg'));
+  if (!okOld) return showMsg($('#pwdMsg'), 'Введите текущий пароль', 'err');
+  if (!okNew) return showMsg($('#pwdMsg'), 'Новый пароль: минимум 8 символов, буква и цифра', 'err');
+  if (!okRep) return showMsg($('#pwdMsg'), 'Пароли не совпадают', 'err');
+
+  const btn = e.target.querySelector('button[type="submit"]');
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Обновляем…';
+  try {
+    const data = await api('password.php', { method: 'POST', body: { current, password: n1 } });
+    csrfToken = data.csrf || csrfToken;
+    $('#pwdForm').reset();
+    $$('#pwdForm .field').forEach(f => f.classList.remove('bad'));
+    showMsg($('#pwdMsg'), data.message, 'ok');
+    toast('Пароль обновлён');
+  } catch (err) {
+    if (err.code === 'current') markField($('#pwdOld'), false);
+    showMsg($('#pwdMsg'), err.message, 'err');
+  } finally {
+    btn.disabled = false; btn.textContent = label;
+  }
+});
+
+/* --- выход --- */
+$('#logoutBtn').addEventListener('click', async () => {
+  try { await api('logout.php', { method: 'POST' }); } catch (e) {}
+  meUser = null;
+  myAddresses = []; myOrders = [];
+  closeAll(); renderAccount(); renderOrders(); renderAddressBook();
+  toast('Вы вышли из аккаунта');
+  csrfToken = '';
+  loadMe().catch(() => {});
+});
+
+/* --- удаление аккаунта --- */
+$('#deleteForm').addEventListener('submit', e => e.preventDefault());
+$('#deleteBtn').addEventListener('click', async () => {
+  if (!user()) return;
+  const pass = $('#delPass').value;
+  hideMsg($('#delMsg'));
+  if (!markField($('#delPass'), !!pass)) return showMsg($('#delMsg'), 'Введите пароль для подтверждения', 'err');
+  const btn = $('#deleteBtn');
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Удаляем…';
+  try {
+    await api('delete.php', { method: 'POST', body: { password: pass } });
+    meUser = null;
+    csrfToken = '';
+    $('#delPass').value = '';
+    closeAll(); renderAccount(); renderOrders();
+    toast('Аккаунт удалён');
+    loadMe().catch(() => {});
+  } catch (err) {
+    if (err.code === 'password') markField($('#delPass'), false);
+    showMsg($('#delMsg'), err.message, 'err');
+  } finally {
+    btn.disabled = false; btn.textContent = label;
+  }
+});
+
+/* --- запуск: сессия и ссылки из письма --- */
+(async function initAccount() {
+  try { await loadMe(); } catch (e) { /* сервер недоступен — форма покажет ошибку при отправке */ }
+
+  const qs = new URLSearchParams(location.search);
+  if (qs.get('verified') === '1') {
+    history.replaceState({}, '', location.pathname);
+    toast('E-mail подтверждён');
+    if (user()) openProfile(); else openAuth('login');
+  } else if (qs.get('verify') === 'invalid') {
+    history.replaceState({}, '', location.pathname);
+    openAuth('login');
+    showMsg($('#loginMsg'), 'Ссылка подтверждения недействительна или истекла. Войдите и запросите письмо повторно.', 'err');
+  } else if (qs.get('reset')) {
+    startReset(qs.get('reset'));
+  }
+})();
+
 /* Корзина */
-let cart = {};
+let cart = LS.get('protera_cart_v1', {});
+if (!cart || typeof cart !== 'object' || Array.isArray(cart)) cart = {};
 function cartCount(){ return Object.values(cart).reduce((s, i) => s + i.qty, 0); }
 function cartSum(){ return Object.values(cart).reduce((s, i) => s + i.qty * i.price, 0); }
 function renderCart(){
@@ -1003,7 +1857,7 @@ function renderCart(){
     box.innerHTML = ids.map(id => {
       const i = cart[id];
       return `<div class="ci" data-id="${id}">
-        <div class="ci-thumb"><svg><use href="#${i.img}"/></svg></div>
+        <div class="ci-thumb">${i.img && i.img.indexOf('img:') === 0 ? '<img src="' + i.img.slice(4) + '" alt="">' : '<svg><use href="#' + (i.img || 'i-bottle') + '"/></svg>'}</div>
         <div class="ci-info">
           <div class="ci-name">${i.name}</div>
           <div class="ci-price">${fmt(i.price)} / шт</div>
@@ -1021,16 +1875,9 @@ function renderCart(){
     }).join('');
   }
   $('#cartTotal').textContent = fmt(cartSum());
+  LS.set('protera_cart_v1', cart);
 }
 function bump(){ $$('.js-badge').forEach(b => { b.classList.remove('pop'); void b.offsetWidth; b.classList.add('pop'); }); }
-
-$$('.js-add').forEach(b => b.addEventListener('click', () => {
-  const id = b.dataset.id;
-  cart[id] = cart[id]
-    ? { ...cart[id], qty: cart[id].qty + 1 }
-    : { name: b.dataset.name, price: +b.dataset.price, img: b.dataset.img, qty: 1 };
-  renderCart(); bump(); toast('Добавлено в корзину: ' + b.dataset.name);
-}));
 
 $('#cartItems').addEventListener('click', e => {
   const btn = e.target.closest('[data-act]'); if (!btn) return;
@@ -1048,29 +1895,19 @@ $('#cartOpen').addEventListener('click', () => openPanel('cart-open'));
 $('#promoOrder').addEventListener('click', () => openPanel('cart-open'));
 $('#overlay').addEventListener('click', closeAll);
 $$('[data-close]').forEach(b => b.addEventListener('click', closeAll));
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape'){ closeAll(); closeAuth(); closeProduct(); closeCheckout(); } });
 
-/* Оформление заказа -> создание записи в «Заказах» */
-$('#checkout').addEventListener('click', () => {
-  if (!cartCount()) return toast('Корзина пуста — добавьте товары 🙂');
-  const num = '№ ' + String(orders.length + 1).padStart(3, '0');
-  orders.unshift({
-    num,
-    date: new Date().toLocaleString('ru-RU', {day:'2-digit', month:'2-digit', year:'numeric', hour:'2-digit', minute:'2-digit'}),
-    items: Object.values(cart).map(i => ({ name: i.name, qty: i.qty })),
-    total: cartSum(),
-    status: 'В обработке'
-  });
-  LS.set('protera_orders', orders);
-  const bonus = Math.floor(cartSum() * 0.05);
-  cart = {}; renderCart(); renderOrders(); fillProfile(); closeAll();
-  toast('Заказ ' + num + ' оформлен! Начислено бонусов: ' + bonus);
-});
+/* Оформление заказа -> окно с адресом, интервалом и оплатой */
+$('#checkout').addEventListener('click', () => openCheckout());
+
 
 /* Нижнее меню — все кнопки рабочие */
 $('#tabCart').addEventListener('click', () => openPanel('cart-open'));
-$('#tabOrders').addEventListener('click', () => { renderOrders(); openPanel('orders-open'); });
-$('#tabProfile').addEventListener('click', () => { fillProfile(); openPanel('profile-open'); });
+$('#tabOrders').addEventListener('click', () => { loadOrders(); openPanel('orders-open'); });
+$('#tabProfile').addEventListener('click', () => { user() ? openProfile() : openAuth('login'); });
+$$('.tabbar .tab').forEach(t => t.addEventListener('click', () => {
+  $$('.tabbar .tab').forEach(x => x.classList.remove('active')); t.classList.add('active');
+}));
 $$('#tabHome, #tabCatalog').forEach(a => a.addEventListener('click', () => {
   $$('.tabbar .tab').forEach(t => t.classList.remove('active')); a.classList.add('active');
 }));
@@ -1095,8 +1932,408 @@ $('#orderForm').addEventListener('submit', e => {
   f.reset();
 });
 
+
+/* ==================== КАТАЛОГ, АДРЕСА, ОФОРМЛЕНИЕ ==================== */
+const esc = v => String(v == null ? '' : v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+let SITE = { settings: {}, categories: [], products: [], zones: [], payments: [] };
+let currentFilter = 'all';
+let activeProduct = null;
+let myAddresses = [];
+
+function productImage(p) {
+  if (p.image) return '<img src="' + esc(p.image) + '" alt="' + esc(p.name) + '">';
+  return '<svg class="gimg"><use href="#' + esc(p.icon || 'i-bottle') + '"/></svg>';
+}
+
+function applySettings() {
+  const st = SITE.settings || {};
+  const set = (sel, txt) => { const el = $(sel); if (el && txt) el.textContent = txt; };
+  set('#heroTitle', st.hero_title);
+  set('#heroLead', st.hero_sub);
+  set('#headerPhoneText', st.site_phone);
+  set('#contactPhone', st.site_phone);
+  set('#headerHours', st.site_hours);
+  set('#contactHours', st.site_hours);
+  set('#contactArea', st.site_area);
+  set('#deliveryNote', st.delivery_note);
+  set('#aboutTitle', st.about_title);
+  set('#aboutP1', st.about_p1);
+  set('#aboutP2', st.about_p2);
+  set('#contactEmail', st.site_email);
+  if (st.site_phone_href) {
+    if ($('#headerPhone')) $('#headerPhone').href = 'tel:' + st.site_phone_href;
+    if ($('#contactPhone')) $('#contactPhone').href = 'tel:' + st.site_phone_href;
+  }
+  if (st.site_email && $('#contactEmail')) $('#contactEmail').href = 'mailto:' + st.site_email;
+  if (st.seo_title) document.title = st.seo_title;
+  if (st.seo_description) {
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute('content', st.seo_description);
+  }
+  if (st.footer_text && $('#footerText')) {
+    $('#footerText').textContent = '© ' + new Date().getFullYear() + ' ' + st.footer_text.replace(/^©\s*/, '');
+  }
+  // первый слайд главного экрана берём из настроек
+  if (typeof slides !== 'undefined') {
+    if (st.hero_title) slides[0].t = st.hero_title;
+    if (st.hero_sub) slides[0].l = st.hero_sub;
+    if (typeof si !== 'undefined' && si === 0) {
+      $('#heroTitle').textContent = slides[0].t;
+      $('#heroLead').textContent = slides[0].l;
+    }
+  }
+}
+
+function renderFilters() {
+  const box = $('#catFilters');
+  if (!box) return;
+  const cats = [{ skey: 'all', name: 'Все товары' }].concat(SITE.categories || []);
+  box.innerHTML = cats.map(c =>
+    `<button class="cat-btn ${c.skey === currentFilter ? 'active' : ''}" data-filter="${esc(c.skey)}">${esc(c.name)}</button>`
+  ).join('');
+  box.querySelectorAll('button').forEach(b => b.addEventListener('click', () => {
+    currentFilter = b.dataset.filter;
+    renderFilters();
+    renderCatalog();
+  }));
+}
+
+function renderCatalog() {
+  const grid = $('#goodsGrid');
+  if (!grid) return;
+  grid.querySelectorAll('.good').forEach(el => el.remove());
+  const promo = grid.querySelector('.promo');
+  (SITE.products || [])
+    .filter(p => currentFilter === 'all' || p.category === currentFilter)
+    .forEach(p => {
+      const card = document.createElement('article');
+      card.className = 'good';
+      card.dataset.id = p.id;
+      card.dataset.cat = p.category;
+      card.innerHTML =
+        (p.badge ? `<span class="hit">${esc(p.badge)}</span>` : '') +
+        `<div class="thumb">${productImage(p)}</div>` +
+        `<h3>${esc(p.name)}</h3>` +
+        `<div class="sub">${esc(p.short_desc || '')}</div>` +
+        `<div class="price"><b>${fmt(p.price)}</b>${p.volume ? ' · ' + esc(p.volume) : ''}</div>` +
+        `<div class="good-actions">` +
+          `<button class="btn btn-primary btn-sm js-add" type="button"><svg class="ic s14"><use href="#i-cart"/></svg>В корзину</button>` +
+          `<button class="btn btn-ghost btn-sm js-more" type="button">Подробнее</button>` +
+        `</div>`;
+      grid.insertBefore(card, promo || null);
+    });
+}
+
+function addToCart(id) {
+  const p = (SITE.products || []).find(x => x.id === id);
+  if (!p) return;
+  const key = 'p' + p.id;
+  cart[key] = cart[key]
+    ? { ...cart[key], qty: cart[key].qty + 1 }
+    : { name: p.name, price: p.price, img: p.image ? 'img:' + p.image : (p.icon || 'i-bottle'), qty: 1 };
+  renderCart();
+  bump();
+  toast('Добавлено: ' + p.name);
+}
+
+$('#goodsGrid').addEventListener('click', e => {
+  const card = e.target.closest('.good');
+  if (!card) return;
+  const id = Number(card.dataset.id);
+  if (e.target.closest('.js-add')) { addToCart(id); return; }
+  openProduct(id);
+});
+
+/* карточка товара */
+function openProduct(id) {
+  const p = (SITE.products || []).find(x => x.id === id);
+  if (!p) return;
+  activeProduct = p;
+  $('#pmName').textContent = p.name;
+  $('#pmSub').textContent = [p.short_desc, p.volume].filter(Boolean).join(' · ');
+  $('#pmPrice').innerHTML = fmt(p.price) + (p.old_price ? ' <s>' + fmt(p.old_price) + '</s>' : '');
+  $('#pmDesc').textContent = p.description || p.short_desc || '';
+  $('#pmBadge').hidden = !p.badge;
+  $('#pmBadge').textContent = p.badge || '';
+  $('#pmMedia').innerHTML = productImage(p);
+  document.body.classList.add('pm-open');
+}
+function closeProduct() { document.body.classList.remove('pm-open'); }
+$('#pmClose').addEventListener('click', closeProduct);
+$('#pmCloseBtn').addEventListener('click', closeProduct);
+$('#productModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeProduct(); });
+$('#pmAdd').addEventListener('click', () => { if (activeProduct) { addToCart(activeProduct.id); closeProduct(); } });
+
+/* адреса клиента */
+async function loadAddresses() {
+  if (!user()) { myAddresses = []; renderAddressBook(); return; }
+  try {
+    const data = await api('addresses.php');
+    myAddresses = data.addresses || [];
+  } catch (e) {
+    myAddresses = [];
+  }
+  renderAddressBook();
+}
+
+function addrLine(a) {
+  return a.city + ', ' + a.street +
+    (a.apartment ? ', кв. ' + a.apartment : '') +
+    (a.entrance ? ', подъезд ' + a.entrance : '') +
+    (a.floor ? ', этаж ' + a.floor : '');
+}
+
+function renderAddressBook() {
+  const box = $('#addressList');
+  if (!box) return;
+  if (!user()) {
+    box.innerHTML = '<div class="addr-empty">Войдите, чтобы сохранять адреса доставки.</div>';
+    return;
+  }
+  if (!myAddresses.length) {
+    box.innerHTML = '<div class="addr-empty">Пока нет сохранённых адресов. Добавьте первый — он подставится при оформлении заказа.</div>';
+    return;
+  }
+  box.innerHTML = myAddresses.map(a => `
+    <div class="addr-item ${a.is_default ? 'is-default' : ''}" data-id="${a.id}">
+      <div class="ai-top">
+        <b>${esc(a.label || 'Адрес')}</b>
+        ${a.is_default ? '<span class="addr-def">основной</span>' : ''}
+      </div>
+      <div class="ai-text">${esc(addrLine(a))}${a.comment ? '<br><span class="muted">' + esc(a.comment) + '</span>' : ''}</div>
+      <div class="ai-actions">
+        <button class="link-btn" type="button" data-addr="edit">Изменить</button>
+        ${a.is_default ? '' : '<button class="link-btn" type="button" data-addr="default">Сделать основным</button>'}
+        <button class="link-btn" type="button" data-addr="delete" style="color:#c93b3b">Удалить</button>
+      </div>
+    </div>`).join('');
+}
+
+function buildCitySelect() {
+  const sel = $('#afCity');
+  if (!sel) return;
+  const cities = [];
+  (SITE.zones || []).forEach(z => (z.cities || []).forEach(c => { if (cities.indexOf(c) < 0) cities.push(c); }));
+  sel.innerHTML = '<option value="">Выберите город</option>' + cities.map(c => `<option>${esc(c)}</option>`).join('');
+}
+
+function openAddrForm(a) {
+  $('#addressForm').hidden = false;
+  $('#afId').value = a ? a.id : '';
+  $('#afLabel').value = a ? (a.label || '') : '';
+  $('#afCity').value = a ? a.city : '';
+  $('#afStreet').value = a ? a.street : '';
+  $('#afApt').value = a ? (a.apartment || '') : '';
+  $('#afEntrance').value = a ? (a.entrance || '') : '';
+  $('#afFloor').value = a ? (a.floor || '') : '';
+  $('#afComment').value = a ? (a.comment || '') : '';
+  $('#afDefault').checked = a ? !!a.is_default : myAddresses.length === 0;
+  hideMsg($('#afMsg'));
+  $$('#addressForm .field').forEach(f => f.classList.remove('bad'));
+  $('#addressForm').scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+}
+
+$('#addrAdd').addEventListener('click', () => openAddrForm(null));
+$('#afCancel').addEventListener('click', () => { $('#addressForm').hidden = true; });
+
+$('#addressList').addEventListener('click', async e => {
+  const btn = e.target.closest('[data-addr]');
+  if (!btn) return;
+  const id = Number(btn.closest('.addr-item').dataset.id);
+  const a = myAddresses.find(x => x.id === id);
+  if (btn.dataset.addr === 'edit') { openAddrForm(a); return; }
+  try {
+    if (btn.dataset.addr === 'delete') {
+      if (!confirm('Удалить этот адрес?')) return;
+      const data = await api('addresses.php', { method: 'POST', body: { action: 'delete', id } });
+      myAddresses = data.addresses || [];
+      toast('Адрес удалён');
+    } else {
+      const data = await api('addresses.php', { method: 'POST', body: { action: 'default', id } });
+      myAddresses = data.addresses || [];
+      toast('Основной адрес обновлён');
+    }
+    renderAddressBook();
+  } catch (err) {
+    toast(err.message);
+  }
+});
+
+$('#addressForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const city = $('#afCity').value;
+  const street = $('#afStreet').value.trim();
+  const okCity = markField($('#afCity'), !!city);
+  const okStreet = markField($('#afStreet'), street.length >= 3);
+  hideMsg($('#afMsg'));
+  if (!okCity) return showMsg($('#afMsg'), 'Выберите город доставки', 'err');
+  if (!okStreet) return showMsg($('#afMsg'), 'Укажите улицу и дом', 'err');
+
+  const btn = e.target.querySelector('button[type="submit"]');
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Сохраняем…';
+  try {
+    const data = await api('addresses.php', {
+      method: 'POST',
+      body: {
+        action: 'save',
+        id: Number($('#afId').value) || 0,
+        label: $('#afLabel').value.trim(),
+        city,
+        street,
+        apartment: $('#afApt').value.trim(),
+        entrance: $('#afEntrance').value.trim(),
+        floor: $('#afFloor').value.trim(),
+        comment: $('#afComment').value.trim(),
+        is_default: $('#afDefault').checked
+      }
+    });
+    myAddresses = data.addresses || [];
+    renderAddressBook();
+    $('#addressForm').hidden = true;
+    toast(data.message || 'Адрес сохранён');
+  } catch (err) {
+    if (err.code === 'street') markField($('#afStreet'), false);
+    if (err.code === 'city') markField($('#afCity'), false);
+    showMsg($('#afMsg'), err.message, 'err');
+  } finally {
+    btn.disabled = false; btn.textContent = label;
+  }
+});
+
+/* оформление заказа */
+function openCheckout() {
+  if (!cartCount()) return toast('Корзина пуста — добавьте товары');
+  if (!user()) {
+    toast('Войдите или зарегистрируйтесь, чтобы оформить заказ');
+    return openAuth('register');
+  }
+  if (!myAddresses.length) {
+    closeAll();
+    openProfile();
+    openAddrForm(null);
+    toast('Сначала добавьте адрес доставки');
+    return;
+  }
+  renderCheckout();
+  document.body.classList.add('co-open');
+}
+
+function closeCheckout() { document.body.classList.remove('co-open'); }
+$('#coClose').addEventListener('click', closeCheckout);
+$('#checkoutModal').addEventListener('click', e => { if (e.target === e.currentTarget) closeCheckout(); });
+$('#coAddAddr').addEventListener('click', () => { closeCheckout(); openProfile(); openAddrForm(null); });
+
+function renderCheckout() {
+  const addrBox = $('#coAddresses');
+  addrBox.innerHTML = myAddresses.map(a => `
+    <label class="addr-radio ${a.is_default ? 'sel' : ''}">
+      <input type="radio" name="coAddr" value="${a.id}" ${a.is_default ? 'checked' : ''}>
+      <span><b>${esc(a.label || 'Адрес')}</b><span class="addr-line">${esc(addrLine(a))}</span></span>
+    </label>`).join('');
+  addrBox.querySelectorAll('input').forEach(r => r.addEventListener('change', () => {
+    addrBox.querySelectorAll('.addr-radio').forEach(l => l.classList.toggle('sel', l.querySelector('input').checked));
+    updateIntervals();
+  }));
+
+  const payBox = $('#coPayments');
+  payBox.innerHTML = (SITE.payments || []).map((p, i) => `
+    <label class="addr-radio ${i === 0 ? 'sel' : ''}">
+      <input type="radio" name="coPay" value="${esc(p.code)}" ${i === 0 ? 'checked' : ''}>
+      <span><b>${esc(p.title)}</b>${esc(p.note || '')}</span>
+    </label>`).join('');
+  payBox.querySelectorAll('input').forEach(r => r.addEventListener('change', () => {
+    payBox.querySelectorAll('.addr-radio').forEach(l => l.classList.toggle('sel', l.querySelector('input').checked));
+  }));
+
+  $('#coComment').value = '';
+  $('#coTotal').textContent = fmt(cartSum());
+  updateIntervals();
+}
+
+function selectedAddress() {
+  const checked = document.querySelector('#coAddresses input:checked');
+  return checked ? myAddresses.find(a => String(a.id) === checked.value) : null;
+}
+
+function updateIntervals() {
+  const a = selectedAddress();
+  const sel = $('#coInterval');
+  const note = $('#coZoneNote');
+  const zone = a ? (SITE.zones || []).find(z => (z.cities || []).indexOf(a.city) >= 0) : null;
+  if (!zone) {
+    sel.innerHTML = '<option value="">—</option>';
+    note.textContent = 'Для этого города доставка недоступна';
+    return;
+  }
+  sel.innerHTML = (zone.intervals || []).map(iv => `<option value="${esc(iv)}">${esc(iv)}</option>`).join('');
+  note.textContent = zone.note ? zone.name + ' · ' + zone.note : zone.name;
+}
+
+$('#checkoutForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  hideMsg($('#coMsg'));
+  const a = selectedAddress();
+  const interval = $('#coInterval').value;
+  const pay = document.querySelector('#coPayments input:checked');
+  if (!a) return showMsg($('#coMsg'), 'Выберите адрес доставки', 'err');
+  if (!interval) return showMsg($('#coMsg'), 'Выберите интервал доставки', 'err');
+  if (!pay) return showMsg($('#coMsg'), 'Выберите способ оплаты', 'err');
+
+  const items = Object.keys(cart).map(key => ({ id: Number(String(key).replace(/^p/, '')), qty: cart[key].qty }))
+    .filter(i => i.id > 0 && i.qty > 0);
+
+  const btn = e.target.querySelector('button[type="submit"]');
+  const label = btn.textContent;
+  btn.disabled = true; btn.textContent = 'Оформляем…';
+  try {
+    const data = await api('orders.php', {
+      method: 'POST',
+      body: {
+        items,
+        address_id: a.id,
+        interval,
+        payment_code: pay.value,
+        comment: $('#coComment').value.trim()
+      }
+    });
+    cart = {};
+    renderCart();
+    myOrders.unshift(data.order);
+    renderOrders();
+    renderAccount();
+    closeCheckout();
+    closeAll();
+    $('#checkoutForm').reset();
+    toast(data.message);
+    openPanel('orders-open');
+  } catch (err) {
+    showMsg($('#coMsg'), err.message, 'err');
+  } finally {
+    btn.disabled = false; btn.textContent = label;
+  }
+});
+
+/* загрузка контента сайта */
+(async function initSite() {
+  try {
+    SITE = await api('site.php');
+  } catch (e) {
+    const grid = $('#goodsGrid');
+    if (grid) grid.insertAdjacentHTML('afterbegin', '<div class="empty" style="grid-column:1/-1">Не удалось загрузить каталог. Обновите страницу.</div>');
+    return;
+  }
+  applySettings();
+  buildCitySelect();
+  renderFilters();
+  renderCatalog();
+  renderAddressBook();
+})();
+
 $('#year').textContent = new Date().getFullYear();
-renderCart(); renderOrders(); fillProfile();
+renderCart(); renderAccount(); renderOrders();
+if (!user()) closeAuth();
 </script>
 </body>
 </html>
